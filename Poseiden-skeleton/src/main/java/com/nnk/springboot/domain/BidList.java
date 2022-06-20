@@ -9,10 +9,11 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Entity(name = "Bid list")
+@Entity(name = "Bid List")
 @Table(name = "bid_list")
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields
+    // DONE
 
     @Id
     @SequenceGenerator(
@@ -32,6 +33,7 @@ public class BidList {
     private String account;
 
     @Column(name = "type")
+    @NotBlank(message = "Type is mandatory")
     private String type;
 
     @Column(name = "bid_quantity")

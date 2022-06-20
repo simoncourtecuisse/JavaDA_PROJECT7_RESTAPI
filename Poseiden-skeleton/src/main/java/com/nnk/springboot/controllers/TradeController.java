@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Trade;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 @Controller
 public class TradeController {
     // TODO: Inject Trade service
+
+    Logger LOGGER = LogManager.getLogger(TradeController.class);
 
     @RequestMapping("/trade/list")
     public String home(Model model)

@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,9 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
+
+    Logger LOGGER = LogManager.getLogger(UserController.class);
+
     @Autowired
     private UserRepository userRepository;
 

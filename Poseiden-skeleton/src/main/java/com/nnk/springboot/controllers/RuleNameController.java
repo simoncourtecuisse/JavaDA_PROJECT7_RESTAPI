@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 @Controller
 public class RuleNameController {
     // TODO: Inject RuleName service
+
+    Logger LOGGER = LogManager.getLogger(RuleNameController.class);
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)
