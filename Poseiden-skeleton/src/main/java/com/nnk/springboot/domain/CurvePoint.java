@@ -25,7 +25,7 @@ public class CurvePoint {
             strategy = GenerationType.SEQUENCE,
             generator = "curve_point_sequence"
     )
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "curve_id")
@@ -36,10 +36,10 @@ public class CurvePoint {
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Timestamp asOfDate;
 
-    @Column(name = "term")
+    @Column(name = "term", precision = 6, scale = 1)
     private double term;
 
-    @Column(name = "value")
+    @Column(name = "value", precision = 6, scale = 1)
     private double value;
 
     @Column(name = "creation_date")

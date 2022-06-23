@@ -23,7 +23,7 @@ public class Trade {
             strategy = GenerationType.SEQUENCE,
             generator = "trade_sequence"
     )
-    @Column(name = "trade_id")
+    @Column(name = "trade_id", nullable = false)
     private Integer tradeId;
 
     @Column(name = "account")
@@ -32,16 +32,16 @@ public class Trade {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "buy_quantity")
+    @Column(name = "buy_quantity", precision = 6, scale = 1)
     private double buyQuantity;
 
-    @Column(name = "sell_quantity")
+    @Column(name = "sell_quantity", precision = 6, scale = 1)
     private double sellQuantity;
 
-    @Column(name = "buy_price")
+    @Column(name = "buy_price", precision = 6, scale = 1)
     private double buyPrice;
 
-    @Column(name = "sell_price")
+    @Column(name = "sell_price", precision = 6, scale = 1)
     private double sellPrice;
 
     @Column(name = "benchmark")

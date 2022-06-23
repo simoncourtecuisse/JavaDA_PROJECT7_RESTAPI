@@ -20,7 +20,7 @@ public class RuleName {
             strategy = GenerationType.SEQUENCE,
             generator = "rule_name_sequence"
     )
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "name")

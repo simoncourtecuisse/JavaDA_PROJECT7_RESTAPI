@@ -22,18 +22,22 @@ public class Rating {
             strategy = GenerationType.SEQUENCE,
             generator = "rating_sequence"
     )
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
+    @NotBlank(message = "MoodyRating is mandatory")
     @Column(name = "moody_rating")
     private String moodyRating;
 
+    @NotBlank(message = "SandPRating is mandatory")
     @Column(name = "sand_p_rating")
     private String sandPRating;
 
+    @NotBlank(message = "FitchRating is mandatory")
     @Column(name = "fitch_rating")
     private String fitchRating;
 
+    @NotNull(message = "OrderNumber must not be null")
     @Column(name = "order_Number")
     private Integer orderNumber;
 

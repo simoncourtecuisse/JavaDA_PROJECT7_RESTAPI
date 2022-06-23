@@ -4,6 +4,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity(name = "User")
 @DynamicUpdate
@@ -20,7 +21,7 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "users_sequence"
     )
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "username")
@@ -28,19 +29,26 @@ public class User {
     private String username;
 
     @Column(name = "password")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
     @NotBlank(message = "Password is mandatory")
     private String password;
 
-    @Column(name = "fullname")
+    @Column(name = "full_name")
     @NotBlank(message = "FullName is mandatory")
-    private String fullname;
+    private String fullName;
 
     @Column(name = "role")
     @NotBlank(message = "Role is mandatory")
     private String role;
 
     public User() {
+    }
 
+    public User(String username, String password, String fullName, String role) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -67,12 +75,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getRole() {

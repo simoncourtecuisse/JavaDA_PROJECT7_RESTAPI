@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,7 +26,7 @@ public class BidList {
             strategy = GenerationType.SEQUENCE,
             generator = "bid_list_sequence"
     )
-    @Column(name = "bid_list_id")
+    @Column(name = "bid_list_id", nullable = false)
     private Integer bidListId;
 
     @Column(name = "account")
@@ -36,16 +37,16 @@ public class BidList {
     @NotBlank(message = "Type is mandatory")
     private String type;
 
-    @Column(name = "bid_quantity")
+    @Column(name = "bid_quantity", precision = 6, scale = 1)
     private double bidQuantity;
 
-    @Column(name = "ask_quantity")
+    @Column(name = "ask_quantity", precision = 6, scale = 1)
     private double askQuantity;
 
-    @Column(name = "bid")
+    @Column(name = "bid", precision = 6, scale = 1)
     private double bid;
 
-    @Column(name = "ask")
+    @Column(name = "ask", precision = 6, scale = 1)
     private double ask;
 
     @Column(name = "benchmark")

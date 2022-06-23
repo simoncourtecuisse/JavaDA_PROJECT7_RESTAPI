@@ -1,10 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
-import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.services.BidListService;
 import org.apache.logging.log4j.LogManager;
-
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +25,10 @@ public class BidListController {
     @Autowired
     private BidListService bidListService;
 
-    @Autowired
-    private BidListRepository bidListRepository;
-
     @RequestMapping("/bidList/list")
     public String home(Model model) {
         // TODO: call service find all bids to show to the view
-        model.addAttribute("allBids", bidListService.getAllBids());
+        model.addAttribute("allBidLists", bidListService.getAllBids());
         return "bidList/list";
     }
 
@@ -47,9 +42,11 @@ public class BidListController {
         // TODO: check data valid and save to db, after saving return bid list
         if (!result.hasErrors()) {
             bidListService.saveBidList(bid);
-            model.addAttribute("bidList", bidListService.getAllBids());
+            model.addAttribute("allBidLists", bidListService.getAllBids());
+            LOGGER.info("BidList's successfully created !");
             return "redirect:/bidList/list";
         }
+        LOGGER.error("Failed to create a new BidList");
         return "bidList/add";
     }
 
@@ -62,14 +59,15 @@ public class BidListController {
 
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
-                             BindingResult result, Model model) {
+                            BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
-        if(result.hasErrors()) {
-            model.addAttribute("bidList", bidList);
+        if (result.hasErrors()) {
             return "bidList/update";
         } else {
-            BidList updatedBidList = bidListService.getBidById(id);
-            bidListService.updateBidList(updatedBidList);
+            boolean updated = bidListService.updateBidList(id, bidList);
+            if (updated) {
+                model.addAttribute("allBidLists", bidListService.getAllBids());
+            }
             return "redirect:/bidList/list";
         }
     }
@@ -77,9 +75,8 @@ public class BidListController {
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
-        BidList bidList = bidListService.getBidById(id);
-        model.addAttribute("bidList", bidListService.getBidById(id));
-        bidListService.deleteBidList(bidList);
+        bidListService.deleteBidListById(id);
+        model.addAttribute("allBidLists", bidListService.getAllBids());
         return "redirect:/bidList/list";
     }
 }
