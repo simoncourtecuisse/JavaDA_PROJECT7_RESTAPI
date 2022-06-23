@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TradeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.services</a> &gt; <span class="el_source">TradeService.java</span></div><h1>TradeService.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.services;
+
+import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.repositories.TradeRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional
+<span class="fc" id="L17">public class TradeService {</span>
+
+<span class="fc" id="L19">    Logger LOGGER = LogManager.getLogger(TradeService.class);</span>
+
+    @Autowired
+    private TradeRepository tradeRepository;
+
+    public List&lt;Trade&gt; getAllTrades() {
+<span class="nc" id="L25">        return tradeRepository.findAll();</span>
+    }
+
+    public Trade getTradeById(Integer id) {
+<span class="nc" id="L29">        Optional&lt;Trade&gt; trade = tradeRepository.findById(id);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (trade.isPresent()) {</span>
+<span class="nc" id="L31">            LOGGER.info(&quot;Trade's successfully found&quot;);</span>
+<span class="nc" id="L32">            return trade.get();</span>
+        } else {
+<span class="nc" id="L34">            LOGGER.error(&quot;Failed to find Trade&quot;);</span>
+<span class="nc" id="L35">            return null;</span>
+        }
+    }
+
+    public void saveTrade(Trade trade) {
+<span class="nc" id="L40">        tradeRepository.save(trade);</span>
+<span class="nc" id="L41">        LOGGER.info(&quot;Trade's successfully created&quot;);</span>
+<span class="nc" id="L42">    }</span>
+
+    public boolean updateTrade(Integer id, Trade trade) {
+<span class="nc" id="L45">        boolean updated = false;</span>
+<span class="nc" id="L46">        Optional&lt;Trade&gt; refTrade = tradeRepository.findById(id);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (refTrade.isPresent()) {</span>
+<span class="nc" id="L48">            Trade updatedTrade = refTrade.get();</span>
+<span class="nc" id="L49">            updatedTrade.setAccount(trade.getAccount());</span>
+<span class="nc" id="L50">            updatedTrade.setType(trade.getType());</span>
+<span class="nc" id="L51">            tradeRepository.save(updatedTrade);</span>
+<span class="nc" id="L52">            updated = true;</span>
+<span class="nc" id="L53">            LOGGER.info(&quot;Trade's successfully updated&quot;);</span>
+<span class="nc" id="L54">        } else {</span>
+<span class="nc" id="L55">            LOGGER.error(&quot;Failed to update Trade&quot;);</span>
+        }
+<span class="nc" id="L57">        return updated;</span>
+    }
+
+    public void deleteTradeById(Integer id) {
+<span class="nc" id="L61">        Optional&lt;Trade&gt; removeTrade = tradeRepository.findById(id);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (removeTrade.isPresent()) {</span>
+<span class="nc" id="L63">            tradeRepository.delete(removeTrade.get());</span>
+<span class="nc" id="L64">            LOGGER.info(&quot;Trade's successfully deleted&quot;);</span>
+        } else {
+<span class="nc" id="L66">            LOGGER.error(&quot;Failed to delete Trade&quot;);</span>
+        }
+<span class="nc" id="L68">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

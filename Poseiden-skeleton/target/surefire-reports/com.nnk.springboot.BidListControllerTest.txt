@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.BidListControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 13.247 s <<< FAILURE! - in com.nnk.springboot.BidListControllerTest
+com.nnk.springboot.BidListControllerTest  Time elapsed: 13.244 s  <<< ERROR!
+org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: as near line 1, column 38 [select generatedAlias0 from Bid List as generatedAlias0]; nested exception is java.lang.IllegalArgumentException: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: as near line 1, column 38 [select generatedAlias0 from Bid List as generatedAlias0]
+	at com.nnk.springboot.BidListControllerTest.init(BidListControllerTest.java:41)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: as near line 1, column 38 [select generatedAlias0 from Bid List as generatedAlias0]
+	at com.nnk.springboot.BidListControllerTest.init(BidListControllerTest.java:41)
+Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: as near line 1, column 38 [select generatedAlias0 from Bid List as generatedAlias0]
+	at com.nnk.springboot.BidListControllerTest.init(BidListControllerTest.java:41)
+
