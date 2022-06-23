@@ -1,4 +1,4 @@
-package com.nnk.springboot.services;
+package com.nnk.springboot.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nnk.springboot.domain.User;
@@ -8,7 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -27,12 +29,9 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public static UserDetailsImpl build(User user) {
-        Collection<GrantedAuthority> authorities = new ArrayList<>(2);
-        if (user.getRole().equals("ADMIN")) {
-            authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        } else if (user.getRole().equals("USER")) {
-            authorities.add(new SimpleGrantedAuthority("USER"));
-        }
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
         return new UserDetailsImpl(
                 user.getId(),
                 user.getUsername(),
@@ -90,3 +89,18 @@ public class UserDetailsImpl implements UserDetails {
         return Objects.equals(id, user.id);
     }
 }
+
+//    public static UserDetailsImpl build(User user) {
+//        Collection<GrantedAuthority> authorities = new ArrayList<>(2);
+//        if (user.getRole().equals("ADMIN")) {
+//            authorities.add(new SimpleGrantedAuthority("ADMIN"));
+//        } else if (user.getRole().equals("USER")) {
+//            authorities.add(new SimpleGrantedAuthority("USER"));
+//        }
+//        return new UserDetailsImpl(
+//                user.getId(),
+//                user.getUsername(),
+//                user.getPassword(),
+//                authorities
+//        );
+//    }

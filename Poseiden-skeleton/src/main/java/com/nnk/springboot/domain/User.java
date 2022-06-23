@@ -5,6 +5,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "User")
 @DynamicUpdate
@@ -37,18 +39,27 @@ public class User {
     @NotBlank(message = "FullName is mandatory")
     private String fullName;
 
-    @Column(name = "role")
+//    @Column(name = "role")
+//    @NotBlank(message = "Role is mandatory")
+//    private String role;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     @NotBlank(message = "Role is mandatory")
-    private String role;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(String username, String password, String fullName, String role) {
+    public User(String username, String password, String fullName) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        this.role = role;
+        //this.roles = roles;
     }
 
     public Integer getId() {
@@ -83,11 +94,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
