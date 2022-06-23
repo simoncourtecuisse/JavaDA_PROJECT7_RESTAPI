@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +43,7 @@ public class BidListService {
     }
 
     public void saveBidList(BidList bidList) {
+        bidList.setBidListDate(Timestamp.valueOf(LocalDateTime.now()));
         LOGGER.info("Bid List's successfully created");
         bidListRepository.save(bidList);
     }
@@ -53,6 +56,7 @@ public class BidListService {
             updatedBidList.setAccount(bidList.getAccount());
             updatedBidList.setType(bidList.getType());
             updatedBidList.setBidQuantity(bidList.getBidQuantity());
+            updatedBidList.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
             bidListRepository.save(updatedBidList);
             updated = true;
             LOGGER.info("Bid List's successfully updated");

@@ -13,7 +13,7 @@
 			<a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
 			<a href="/curvePoint/list">Curve Points</a>&nbsp;|&nbsp;
 			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
-			<a href="/trade/list">Trade</a>&nbsp;|&nbsp;
+			<a href="/trade/list">Trades</a>&nbsp;|&nbsp;
 			<a href="/ruleName/list">Rule</a>
 		</div>
 		<div class="col-6 text-right">
@@ -30,7 +30,7 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>MoodysRating</th>
+					<th>MoodyRating</th>
 					<th>SandPRating</th>
 					<th>FitchRating</th>
 					<th>Order</th>
@@ -39,6 +39,17 @@
 			</thead>
 			<tbody>
 			<!-- TODO: Show all Rating to the table, the Action column will have Edit & Delete buttons -->
+			<tr th:each="rating : ${allRatings}">
+				<td style="width: 10%" th:text="${rating.id}"></td>
+				<td th:text="${rating.moodyRating}"></td>
+				<td th:text="${rating.sandPRating}"></td>
+				<td th:text="${rating.fitchRating}"></td>
+				<td style="width: 25%" th:text="${rating.orderNumber}"></td>
+				<td style="width: 15%" class="text-center">
+					<a th:href="@{/rating/update/{id}(id=${rating.id})}">Edit</a>&nbsp;|&nbsp;
+					<a th:href="@{/rating/delete/{id}(id=${rating.id})}">Delete</a>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 	</div>

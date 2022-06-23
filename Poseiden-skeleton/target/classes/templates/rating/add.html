@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
 
-	<div class="row">
-		<h2>Add New Rating</h2>
-	</div>
+    <div class="row">
+        <h2>Add New Rating</h2>
+    </div>
 
-	<div class="row">
-		<form action="#" th:action="@{/rating/validate}" th:object="${rating}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
-			 -->
+    <div class="row">
+        <form action="#" th:action="@{/rating/validate}" th:object="${rating}" method="post" class="form-horizontal"
+              style="width: 100%">
+            <!--
+            TODO: Create a form to input the values of Rating, there are 2 buttons: Save data and Cancel to the list Rating
+             -->
+            <label th:for="${rating.moodyRating}">Moody Rating</label>
+            <input th:field="${rating.moodyRating}" type="text"/><br/>
+            <div style="color:red" th:if="${#fields.hasErrors('${rating.moodyRating}')}">Moody Rating is mandatory</div>
 
-		</form>
-	</div>
+            <label th:for="${rating.sandPRating}">Sand PRating</label>
+            <input th:field="${rating.sandPRating}" type="text"/><br/>
+            <div style="color:red" th:if="${#fields.hasErrors('${rating.sandPRating}')}">Sand PRating is mandatory</div>
+
+            <label th:for="${rating.fitchRating}">Fitch Rating</label>
+            <input th:field="${rating.fitchRating}" type="text"/><br/>
+            <div style="color:red" th:if="${#fields.hasErrors('${rating.fitchRating}')}">Fitch Rating is mandatory</div>
+
+            <label th:for="${rating.orderNumber}">Order Number</label>
+            <input th:field="${rating.orderNumber}" type="number" min="0"/><br/>
+            <div style="color:red" th:if="${#fields.hasErrors('${rating.orderNumber}')}">Order Number must be greater or
+                equal to 0</div>
+
+            <a th:href="@{/rating/list}"><input type="button" value="Cancel"/></a>
+            <input type="submit" value="Add Rating"/>
+        </form>
+    </div>
 
 </div>
 </body>

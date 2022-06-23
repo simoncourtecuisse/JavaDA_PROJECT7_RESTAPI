@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +39,7 @@ public class TradeService {
     }
 
     public void saveTrade(Trade trade) {
+        trade.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
         tradeRepository.save(trade);
         LOGGER.info("Trade's successfully created");
     }
@@ -48,6 +51,7 @@ public class TradeService {
             Trade updatedTrade = refTrade.get();
             updatedTrade.setAccount(trade.getAccount());
             updatedTrade.setType(trade.getType());
+            updatedTrade.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
             tradeRepository.save(updatedTrade);
             updated = true;
             LOGGER.info("Trade's successfully updated");
