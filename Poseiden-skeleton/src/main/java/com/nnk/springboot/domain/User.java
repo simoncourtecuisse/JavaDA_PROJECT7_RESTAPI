@@ -39,18 +39,9 @@ public class User {
     @NotBlank(message = "FullName is mandatory")
     private String fullName;
 
-//    @Column(name = "role")
-//    @NotBlank(message = "Role is mandatory")
-//    private String role;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @Column(name = "role")
     @NotBlank(message = "Role is mandatory")
-    private Set<Role> roles = new HashSet<>();
+    private String role;
 
     public User() {
     }
@@ -59,7 +50,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        //this.roles = roles;
+        //this.role = role;
     }
 
     public Integer getId() {
@@ -94,11 +85,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

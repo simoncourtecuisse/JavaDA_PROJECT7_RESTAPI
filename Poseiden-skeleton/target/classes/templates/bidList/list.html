@@ -38,6 +38,17 @@
 			</thead>
 			<tbody>
 				<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
+				<tr th:each="bidList : ${allBidLists}">
+
+					<td style="width: 10%" th:text="${bidList.bidListId}"></td>
+					<td th:text="${bidList.account}"></td>
+					<td style="width: 25%" th:text="${bidList.type}"></td>
+					<td th:text="${bidList.bidQuantity}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/bidList/{id}(id=${bidList.bidListId})}">Edit &nbsp;</a>&nbsp;|&nbsp;
+						<a th:href="@{/bidList/{id}(id=${bidList.bidListId})}">Delete</a>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

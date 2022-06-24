@@ -14,11 +14,11 @@ VALUES (0, 2),
 	   (1, 2),
        (2, 1);
        
-INSERT INTO bid_list (bid_list_id, account, type, bid_quantity)
-VALUES (1, 'a', 'type-a', 10.0),
-	   (2, 'b', 'type-b', 20.0),
-       (3, 'c', 'type-c', 30.0),
-       (4, 'd', 'type-d', 40.0);
+INSERT INTO bid_list (bid_list_id, account, type, bid_quantity, ask_quantity, bid, ask)
+VALUES (1, 'a', 'type-a', 10.0, 10.0, 10.0, 10.0),
+	   (2, 'b', 'type-b', 20.0, 20.0, 20.0, 20.0),
+       (3, 'c', 'type-c', 30.0, 30.0, 30.0, 30.0 ),
+       (4, 'd', 'type-d', 40.0, 40.0, 40.0, 40.0);
 
 INSERT INTO curve_point (id, curve_id, term, value)
 VALUES (1, 10, 11.1, 11.1),

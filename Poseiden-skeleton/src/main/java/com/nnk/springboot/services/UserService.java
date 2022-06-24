@@ -52,7 +52,7 @@ public class UserService {
             refUser.setFullName(updatedUser.getFullName());
             refUser.setUsername(updatedUser.getUsername());
             refUser.setPassword(updatedUser.getPassword());
-            refUser.setRoles(updatedUser.getRoles());
+            refUser.setRole(updatedUser.getRole());
             updated = true;
             LOGGER.info("User's successfully updated");
         } else {

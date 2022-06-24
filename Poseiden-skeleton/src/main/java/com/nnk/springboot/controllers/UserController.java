@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@PreAuthorize("hasRole('ADMIN')") // ----> uncomment when logging don't have problems anymore ! //
+//@PreAuthorize("hasRole('ADMIN')") // ----> uncomment when logging don't have problems anymore ! //
 @Controller
 public class UserController {
 
