@@ -1,7 +1,7 @@
 USE demo;
 
 INSERT INTO users (id, full_name, username, password)
-VALUES (0, 'admin', 'SuperAdmintrator', '$2a$10$GolCHmo.CxLanyXeHagmEOwS9H/zL1xa9ar09.MpEJbE019YWRvJa'),  -- password: admin123
+VALUES (0, 'admin', 'SuperAdmin', '$2a$10$GolCHmo.CxLanyXeHagmEOwS9H/zL1xa9ar09.MpEJbE019YWRvJa'),  -- password: admin123
 	   (1, "Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa"),
        (2,"User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa");       
        
@@ -17,7 +17,7 @@ VALUES (0, 2),
 INSERT INTO bid_list (bid_list_id, account, type, bid_quantity, ask_quantity, bid, ask)
 VALUES (1, 'a', 'type-a', 10.0, 10.0, 10.0, 10.0),
 	   (2, 'b', 'type-b', 20.0, 20.0, 20.0, 20.0),
-       (3, 'c', 'type-c', 30.0, 30.0, 30.0, 30.0 ),
+       (3, 'c', 'type-c', 30.0, 30.0, 30.0, 30.0),
        (4, 'd', 'type-d', 40.0, 40.0, 40.0, 40.0);
 
 INSERT INTO curve_point (id, curve_id, term, value)
