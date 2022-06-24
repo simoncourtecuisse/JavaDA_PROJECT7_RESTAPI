@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 
-@Entity(name = "Curve Point")
+@Entity(name = "curvePoint")
 @Table(name = "curve_point")
 public class CurvePoint {
     // TODO: Map columns in data table CURVEPOINT with corresponding java fields

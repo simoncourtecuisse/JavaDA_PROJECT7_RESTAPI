@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-@Entity(name = "Bid List")
+@Entity(name = "bidList")
 @Table(name = "bid_list")
 public class BidList {
     // TODO: Map columns in data table BIDLIST with corresponding java fields

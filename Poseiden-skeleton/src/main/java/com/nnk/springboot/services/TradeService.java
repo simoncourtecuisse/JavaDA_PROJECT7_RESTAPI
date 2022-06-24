@@ -51,6 +51,7 @@ public class TradeService {
             Trade updatedTrade = refTrade.get();
             updatedTrade.setAccount(trade.getAccount());
             updatedTrade.setType(trade.getType());
+            updatedTrade.setBuyQuantity(trade.getBuyQuantity());
             updatedTrade.setRevisionDate(Timestamp.valueOf(LocalDateTime.now()));
             tradeRepository.save(updatedTrade);
             updated = true;
