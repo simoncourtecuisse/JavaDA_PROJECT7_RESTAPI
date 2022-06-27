@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -37,7 +36,10 @@ public class BidList {
     @NotBlank(message = "Type is mandatory")
     private String type;
 
-    @Column(name = "bid_quantity", precision = 6, scale = 1)
+    @Column(name = "bid_quantity", precision = 6, scale = 1) // precision scale ignore -> @digits. why ?
+    @Digits(integer = 6, fraction = 2)
+    @DecimalMin(value = "0.1", message = "Bid Quantity must be greater than or equal to 0.1")
+    //@NotNull(message = "Bid Quantity can't be null")
     private double bidQuantity;
 
     @Column(name = "ask_quantity", precision = 6, scale = 1)

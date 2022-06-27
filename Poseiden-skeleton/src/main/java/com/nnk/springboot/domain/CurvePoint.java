@@ -1,9 +1,16 @@
 package com.nnk.springboot.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -29,7 +36,7 @@ public class CurvePoint {
     private Integer id;
 
     @Column(name = "curve_id")
-    @NotNull
+    @NotNull(message = "Curve Id must not be null")
     private Integer curveId;
 
     @Column(name = "as_of_date")
@@ -37,13 +44,20 @@ public class CurvePoint {
     private Timestamp asOfDate;
 
     @Column(name = "term", precision = 6, scale = 1)
+    @Digits(integer = 6, fraction = 2)
+    @DecimalMin(value = "0.1", message = "Term must be greater than or equal to 0.1")
     private double term;
 
     @Column(name = "value", precision = 6, scale = 1)
+    @Digits(integer = 6, fraction = 2)
+    @DecimalMin(value = "0.1", message = "Value must be greater than or equal to 0.1")
     private double value;
 
     @Column(name = "creation_date")
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
+//    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Timestamp creationDate;
 
     public CurvePoint() {}

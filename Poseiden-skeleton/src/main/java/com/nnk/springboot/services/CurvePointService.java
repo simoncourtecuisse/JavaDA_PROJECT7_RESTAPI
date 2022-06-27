@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,6 +25,11 @@ public class CurvePointService {
 
     @Autowired
     private CurvePointRepository curvePointRepository;
+
+    LocalDateTime now = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    String formatDateTime = now.format(formatter);
+
 
     public List<CurvePoint> getAllCurvePoints() {
         return curvePointRepository.findAll();
@@ -40,7 +47,7 @@ public class CurvePointService {
     }
 
     public void saveCurvePoint(CurvePoint curvePoint) {
-        curvePoint.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
+        curvePoint.setCreationDate(Timestamp.valueOf(formatDateTime));
         curvePointRepository.save(curvePoint);
         LOGGER.info("Curve Point's successfully created");
     }
@@ -53,7 +60,7 @@ public class CurvePointService {
             updatedCurvePoint.setCurveId(curvePoint.getCurveId());
             updatedCurvePoint.setTerm(curvePoint.getTerm());
             updatedCurvePoint.setValue(curvePoint.getValue());
-            updatedCurvePoint.setAsOfDate(Timestamp.valueOf(LocalDateTime.now()));
+            updatedCurvePoint.setAsOfDate(Timestamp.valueOf(formatDateTime));
             curvePointRepository.save(updatedCurvePoint);
             updated = true;
             LOGGER.info("Curve Point's successfully updated");

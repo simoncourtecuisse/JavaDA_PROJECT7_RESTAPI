@@ -2,10 +2,12 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.services.PasswordConstraintValidator;
 import com.nnk.springboot.services.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,9 +18,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 
-//@PreAuthorize("hasRole('ADMIN')") // ----> uncomment when logging don't have problems anymore ! //
+import javax.validation.Valid;
+import java.util.Optional;
+
 @Controller
 public class UserController {
 
@@ -26,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/user/list")
     public String home(Model model) {
@@ -40,9 +46,18 @@ public class UserController {
 
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
+
+        Optional<User> usernameExists = userRepository.findByUsername(user.getUsername());
+        if (usernameExists.isPresent()) {
+            LOGGER.error("Username already exists");
+            model.addAttribute("existedUsername", "Username already exists");
+            return "user/add";
+        }
+
         if (!result.hasErrors()) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
+
             userService.saveUser(user);
             model.addAttribute("users", userService.getAllUsers());
             LOGGER.info("User's successfully created !");

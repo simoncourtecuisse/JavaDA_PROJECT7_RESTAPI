@@ -3,6 +3,8 @@ package com.nnk.springboot.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
@@ -26,12 +28,16 @@ public class Trade {
     @Column(name = "trade_id", nullable = false)
     private Integer tradeId;
 
+    @NotBlank(message = "Account is mandatory")
     @Column(name = "account")
     private String account;
 
+    @NotBlank(message = "Type is mandatory")
     @Column(name = "type")
     private String type;
 
+    @Digits(integer = 6, fraction = 2)
+    @DecimalMin(value = "0.1", message = "Bid Quantity must be greater than or equal to 0.1")
     @Column(name = "buy_quantity", precision = 6, scale = 1)
     private double buyQuantity;
 

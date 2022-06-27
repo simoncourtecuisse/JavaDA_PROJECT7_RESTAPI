@@ -27,6 +27,7 @@
 				<div class="col-sm-10">
 					<input type="text" th:field="*{username}" id="username" placeholder="User Name" class="col-4">
 					<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+					<p class="text-danger" th:if="${existedUsername}" th:text="${existedUsername}"></p>
 				</div>
 			</div>
 			<div class="form-group">

@@ -1,5 +1,6 @@
 package com.nnk.springboot.domain;
 
+import com.nnk.springboot.services.ValidPassword;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -31,8 +32,10 @@ public class User {
     private String username;
 
     @Column(name = "password")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    //@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+    @ValidPassword
     @NotBlank(message = "Password is mandatory")
+
     private String password;
 
     @Column(name = "full_name")
