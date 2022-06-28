@@ -38,10 +38,10 @@ public class TradeService {
         }
     }
 
-    public void saveTrade(Trade trade) {
+    public Trade saveTrade(Trade trade) {
         trade.setCreationDate(Timestamp.valueOf(LocalDateTime.now()));
-        tradeRepository.save(trade);
         LOGGER.info("Trade's successfully created");
+        return tradeRepository.save(trade);
     }
 
     public boolean updateTrade(Integer id, Trade trade) {

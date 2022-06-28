@@ -42,10 +42,10 @@ public class BidListService {
         }
     }
 
-    public void saveBidList(BidList bidList) {
+    public BidList saveBidList(BidList bidList) {
         bidList.setBidListDate(Timestamp.valueOf(LocalDateTime.now()));
         LOGGER.info("Bid List's successfully created");
-        bidListRepository.save(bidList);
+        return bidListRepository.save(bidList);
     }
 
     public boolean updateBidList(Integer id, BidList bidList) {

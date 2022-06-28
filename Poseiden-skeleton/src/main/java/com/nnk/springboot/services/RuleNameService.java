@@ -35,9 +35,9 @@ public class RuleNameService {
         }
     }
 
-    public void saveRuleName(RuleName ruleName) {
-        ruleNameRepository.save(ruleName);
+    public RuleName saveRuleName(RuleName ruleName) {
         LOGGER.info("Rule Name's successfully created");
+        return ruleNameRepository.save(ruleName);
     }
 
     public boolean updateRuleName(Integer id, RuleName ruleName) {

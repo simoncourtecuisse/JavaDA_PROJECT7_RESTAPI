@@ -283,4 +283,14 @@ public class BidList {
     public void setSide(String side) {
         this.side = side;
     }
+
+    @Override
+    public String toString() {
+        return "BidList{" +
+                "bidListId=" + bidListId +
+                ", account='" + account + '\'' +
+                ", type='" + type + '\'' +
+                ", bidQuantity=" + bidQuantity +
+                '}';
+    }
 }

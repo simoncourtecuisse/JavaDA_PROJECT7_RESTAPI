@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.services.RatingServiceTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.029 s <<< FAILURE! - in com.nnk.springboot.services.RatingServiceTest
+testUpdateRating_RatingRepositoryFindByIdReturnsAbsent  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at com.nnk.springboot.services.RatingServiceTest.testUpdateRating_RatingRepositoryFindByIdReturnsAbsent(RatingServiceTest.java:130)
+
+testDeleteRatingById_RatingRepositoryFindByIdReturnsAbsent  Time elapsed: 0.002 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+mockRatingRepository.delete(
+    <any com.nnk.springboot.domain.Rating>
+);
+-> at com.nnk.springboot.services.RatingServiceTest.testDeleteRatingById_RatingRepositoryFindByIdReturnsAbsent(RatingServiceTest.java:157)
+
+However, there was exactly 1 interaction with this mock:
+mockRatingRepository.findById(0);
+-> at com.nnk.springboot.services.RatingService.deleteRatingById(RatingService.java:63)
+
+
+	at com.nnk.springboot.services.RatingServiceTest.testDeleteRatingById_RatingRepositoryFindByIdReturnsAbsent(RatingServiceTest.java:157)
+

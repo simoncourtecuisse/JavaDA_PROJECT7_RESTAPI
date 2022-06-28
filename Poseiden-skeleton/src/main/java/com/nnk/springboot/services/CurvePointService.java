@@ -9,12 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -46,10 +43,10 @@ public class CurvePointService {
         }
     }
 
-    public void saveCurvePoint(CurvePoint curvePoint) {
+    public CurvePoint saveCurvePoint(CurvePoint curvePoint) {
         curvePoint.setCreationDate(Timestamp.valueOf(formatDateTime));
-        curvePointRepository.save(curvePoint);
         LOGGER.info("Curve Point's successfully created");
+        return curvePointRepository.save(curvePoint);
     }
 
     public boolean updateCurvePoint(Integer id, CurvePoint curvePoint) {

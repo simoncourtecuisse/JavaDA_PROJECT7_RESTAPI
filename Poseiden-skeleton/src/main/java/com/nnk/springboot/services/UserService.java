@@ -40,9 +40,9 @@ public class UserService {
 //        }
 //    }
 
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         LOGGER.info("User's successfully created");
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public boolean updateUser(Integer id, User updatedUser) {

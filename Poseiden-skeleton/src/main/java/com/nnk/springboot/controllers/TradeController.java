@@ -65,6 +65,7 @@ public class TradeController {
         } else {
             boolean updated = tradeService.updateTrade(id, trade);
             if (updated) {
+                LOGGER.info("Trade's successfully updated !");
                 model.addAttribute("allTrades", tradeService.getAllTrades());
             }
             return "redirect:/trade/list";

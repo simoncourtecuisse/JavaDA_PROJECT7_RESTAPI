@@ -36,9 +36,9 @@ public class RatingService {
         }
     }
 
-    public void saveRating(Rating rating) {
-        ratingRepository.save(rating);
+    public Rating saveRating(Rating rating) {
         LOGGER.info("Rating successfully created");
+        return ratingRepository.save(rating);
     }
 
     public boolean updateRating(Integer id, Rating rating) {

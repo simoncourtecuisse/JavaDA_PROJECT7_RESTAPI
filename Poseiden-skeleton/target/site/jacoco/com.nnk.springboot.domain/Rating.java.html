@@ -22,7 +22,7 @@ public class Rating {
             strategy = GenerationType.SEQUENCE,
             generator = &quot;rating_sequence&quot;
     )
-    @Column(name = &quot;id&quot;)
+    @Column(name = &quot;id&quot;, nullable = false)
     private Integer id;
 
     @NotBlank(message = &quot;MoodyRating is mandatory&quot;)
@@ -43,51 +43,51 @@ public class Rating {
 
 <span class="fc" id="L44">    public Rating() {}</span>
 
-<span class="nc" id="L46">    public Rating(String moodyRating, String sandPRating, String fitchRating, Integer orderNumber) {</span>
-<span class="nc" id="L47">        this.moodyRating = moodyRating;</span>
-<span class="nc" id="L48">        this.sandPRating = sandPRating;</span>
-<span class="nc" id="L49">        this.fitchRating = fitchRating;</span>
-<span class="nc" id="L50">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L51">    }</span>
+<span class="fc" id="L46">    public Rating(String moodyRating, String sandPRating, String fitchRating, Integer orderNumber) {</span>
+<span class="fc" id="L47">        this.moodyRating = moodyRating;</span>
+<span class="fc" id="L48">        this.sandPRating = sandPRating;</span>
+<span class="fc" id="L49">        this.fitchRating = fitchRating;</span>
+<span class="fc" id="L50">        this.orderNumber = orderNumber;</span>
+<span class="fc" id="L51">    }</span>
 
     public Integer getId() {
-<span class="nc" id="L54">        return id;</span>
+<span class="fc" id="L54">        return id;</span>
     }
 
     public void setId(Integer id) {
-<span class="nc" id="L58">        this.id = id;</span>
-<span class="nc" id="L59">    }</span>
+<span class="fc" id="L58">        this.id = id;</span>
+<span class="fc" id="L59">    }</span>
 
     public String getMoodyRating() {
-<span class="nc" id="L62">        return moodyRating;</span>
+<span class="fc" id="L62">        return moodyRating;</span>
     }
 
     public void setMoodyRating(String moodyRating) {
-<span class="nc" id="L66">        this.moodyRating = moodyRating;</span>
-<span class="nc" id="L67">    }</span>
+<span class="fc" id="L66">        this.moodyRating = moodyRating;</span>
+<span class="fc" id="L67">    }</span>
 
     public String getSandPRating() {
-<span class="nc" id="L70">        return sandPRating;</span>
+<span class="fc" id="L70">        return sandPRating;</span>
     }
 
     public void setSandPRating(String sandPRating) {
-<span class="nc" id="L74">        this.sandPRating = sandPRating;</span>
-<span class="nc" id="L75">    }</span>
+<span class="fc" id="L74">        this.sandPRating = sandPRating;</span>
+<span class="fc" id="L75">    }</span>
 
     public String getFitchRating() {
-<span class="nc" id="L78">        return fitchRating;</span>
+<span class="fc" id="L78">        return fitchRating;</span>
     }
 
     public void setFitchRating(String fitchRating) {
-<span class="nc" id="L82">        this.fitchRating = fitchRating;</span>
-<span class="nc" id="L83">    }</span>
+<span class="fc" id="L82">        this.fitchRating = fitchRating;</span>
+<span class="fc" id="L83">    }</span>
 
     public Integer getOrderNumber() {
-<span class="nc" id="L86">        return orderNumber;</span>
+<span class="fc" id="L86">        return orderNumber;</span>
     }
 
     public void setOrderNumber(Integer orderNumber) {
-<span class="nc" id="L90">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L91">    }</span>
+<span class="fc" id="L90">        this.orderNumber = orderNumber;</span>
+<span class="fc" id="L91">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

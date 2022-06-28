@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.services</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.services;
 
-import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -10,25 +9,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
-<span class="fc" id="L17">public class UserService {</span>
+<span class="fc" id="L15">public class UserService {</span>
 
-<span class="fc" id="L19">    Logger LOGGER = LogManager.getLogger(UserService.class);</span>
+<span class="fc" id="L17">    Logger LOGGER = LogManager.getLogger(UserService.class);</span>
 
     @Autowired
     private UserRepository userRepository;
 
     public List&lt;User&gt; getAllUsers() {
-<span class="nc" id="L25">        return userRepository.findAll();</span>
+<span class="fc" id="L23">        return userRepository.findAll();</span>
     }
 
     public User getUserById(Integer id) {
-<span class="nc" id="L29">        LOGGER.info(&quot;User's successfully found&quot;);</span>
-<span class="nc" id="L30">        return userRepository.findById(id)</span>
-<span class="nc" id="L31">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
+<span class="fc" id="L27">        LOGGER.info(&quot;User's successfully found&quot;);</span>
+<span class="fc" id="L28">        return userRepository.findById(id)</span>
+<span class="fc" id="L29">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
     }
 
 //    public User getUserById(Integer id) {
@@ -43,29 +41,29 @@ import java.util.Optional;
 //    }
 
     public User saveUser(User user) {
-<span class="nc" id="L46">        LOGGER.info(&quot;User's successfully created&quot;);</span>
-<span class="nc" id="L47">        return userRepository.save(user);</span>
+<span class="fc" id="L44">        LOGGER.info(&quot;User's successfully created&quot;);</span>
+<span class="fc" id="L45">        return userRepository.save(user);</span>
     }
 
     public boolean updateUser(Integer id, User updatedUser) {
-<span class="nc" id="L51">        boolean updated = false;</span>
-<span class="nc" id="L52">        User refUser = userRepository.findById(id).orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (refUser != null) {</span>
-<span class="nc" id="L54">            refUser.setFullname(updatedUser.getFullname());</span>
-<span class="nc" id="L55">            refUser.setUsername(updatedUser.getUsername());</span>
-<span class="nc" id="L56">            refUser.setPassword(updatedUser.getPassword());</span>
-<span class="nc" id="L57">            refUser.setRole(updatedUser.getRole());</span>
-<span class="nc" id="L58">            updated = true;</span>
-<span class="nc" id="L59">            LOGGER.info(&quot;User's successfully updated&quot;);</span>
+<span class="fc" id="L49">        boolean updated = false;</span>
+<span class="fc" id="L50">        User refUser = userRepository.findById(id).orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if (refUser != null) {</span>
+<span class="fc" id="L52">            refUser.setFullName(updatedUser.getFullName());</span>
+<span class="fc" id="L53">            refUser.setUsername(updatedUser.getUsername());</span>
+<span class="fc" id="L54">            refUser.setPassword(updatedUser.getPassword());</span>
+<span class="fc" id="L55">            refUser.setRole(updatedUser.getRole());</span>
+<span class="fc" id="L56">            updated = true;</span>
+<span class="fc" id="L57">            LOGGER.info(&quot;User's successfully updated&quot;);</span>
         } else {
-<span class="nc" id="L61">            LOGGER.error(&quot;Failed to update User&quot;);</span>
+<span class="nc" id="L59">            LOGGER.error(&quot;Failed to update User&quot;);</span>
         }
-<span class="nc" id="L63">        return updated;</span>
+<span class="fc" id="L61">        return updated;</span>
     }
 
     public void deleteUserById(Integer id) {
-<span class="nc" id="L67">        userRepository.deleteById(id);</span>
-<span class="nc" id="L68">    }</span>
+<span class="fc" id="L65">        userRepository.deleteById(id);</span>
+<span class="fc" id="L66">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

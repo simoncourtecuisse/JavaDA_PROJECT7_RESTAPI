@@ -35,7 +35,6 @@ public class User {
     //@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character")
     @ValidPassword
     @NotBlank(message = "Password is mandatory")
-
     private String password;
 
     @Column(name = "full_name")
