@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TradeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.controllers</a> &gt; <span class="el_source">TradeController.java</span></div><h1>TradeController.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.services.TradeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,46 +16,67 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-<span class="fc" id="L17">public class TradeController {</span>
+<span class="fc" id="L19">public class TradeController {</span>
     // TODO: Inject Trade service
 
-<span class="fc" id="L20">    Logger LOGGER = LogManager.getLogger(TradeController.class);</span>
+<span class="fc" id="L22">    Logger LOGGER = LogManager.getLogger(TradeController.class);</span>
+
+    @Autowired
+    private TradeService tradeService;
 
     @RequestMapping(&quot;/trade/list&quot;)
-    public String home(Model model)
-    {
+    public String home(Model model) {
         // TODO: find all Trade, add to model
-<span class="nc" id="L26">        return &quot;trade/list&quot;;</span>
+<span class="nc" id="L30">        model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+<span class="nc" id="L31">        return &quot;trade/list&quot;;</span>
     }
 
     @GetMapping(&quot;/trade/add&quot;)
     public String addUser(Trade bid) {
-<span class="nc" id="L31">        return &quot;trade/add&quot;;</span>
+<span class="nc" id="L36">        return &quot;trade/add&quot;;</span>
     }
 
     @PostMapping(&quot;/trade/validate&quot;)
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Trade list
-<span class="nc" id="L37">        return &quot;trade/add&quot;;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!result.hasErrors()) {</span>
+<span class="nc" id="L43">            tradeService.saveTrade(trade);</span>
+<span class="nc" id="L44">            model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+<span class="nc" id="L45">            LOGGER.info(&quot;Trade's successfully created !&quot;);</span>
+<span class="nc" id="L46">            return &quot;redirect:/trade/list&quot;;</span>
+        }
+<span class="nc" id="L48">        LOGGER.error(&quot;Failed to create a new Trade&quot;);</span>
+<span class="nc" id="L49">        return &quot;trade/add&quot;;</span>
     }
 
     @GetMapping(&quot;/trade/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: get Trade by Id and to model then show to the form
-<span class="nc" id="L43">        return &quot;trade/update&quot;;</span>
+<span class="nc" id="L55">        model.addAttribute(&quot;trade&quot;, tradeService.getTradeById(id));</span>
+<span class="nc" id="L56">        return &quot;trade/update&quot;;</span>
     }
 
     @PostMapping(&quot;/trade/update/{id}&quot;)
     public String updateTrade(@PathVariable(&quot;id&quot;) Integer id, @Valid Trade trade,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Trade and return Trade list
-<span class="nc" id="L50">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (result.hasErrors()) {</span>
+<span class="nc" id="L64">            return &quot;trade/update&quot;;</span>
+        } else {
+<span class="nc" id="L66">            boolean updated = tradeService.updateTrade(id, trade);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (updated) {</span>
+<span class="nc" id="L68">                model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+            }
+<span class="nc" id="L70">            return &quot;redirect:/trade/list&quot;;</span>
+        }
     }
 
     @GetMapping(&quot;/trade/delete/{id}&quot;)
     public String deleteTrade(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Trade by Id and delete the Trade, return to Trade list
-<span class="nc" id="L56">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="nc" id="L77">        tradeService.deleteTradeById(id);</span>
+<span class="nc" id="L78">        model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+<span class="nc" id="L79">        return &quot;redirect:/trade/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

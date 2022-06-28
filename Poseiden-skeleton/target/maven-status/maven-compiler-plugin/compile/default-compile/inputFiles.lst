@@ -4,6 +4,7 @@ C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Posei
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\TradeService.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RatingRepository.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\UserService.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\services\UserDetailsImpl.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\BidListService.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\LoginController.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\BidListController.java
@@ -13,7 +14,9 @@ C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Posei
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\CurveController.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\BidListRepository.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\UserRepository.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\services\UserDetailsServiceImpl.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\RuleName.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\PasswordConstraintValidator.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\CurvePoint.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\repositories\RuleNameRepository.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\CurvePointService.java
@@ -22,6 +25,8 @@ C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Posei
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Rating.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\RuleNameService.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\Application.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\WebSecurityConfig.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Trade.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\UserController.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\User.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\ValidPassword.java

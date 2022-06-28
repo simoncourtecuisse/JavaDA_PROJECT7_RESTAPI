@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.services.BidListServiceTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.12 s <<< FAILURE! - in com.nnk.springboot.services.BidListServiceTest
+testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0.09 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+mockBidListRepository.delete(
+    <any com.nnk.springboot.domain.BidList>
+);
+-> at com.nnk.springboot.services.BidListServiceTest.testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent(BidListServiceTest.java:149)
+
+However, there was exactly 1 interaction with this mock:
+mockBidListRepository.findById(0);
+-> at com.nnk.springboot.services.BidListService.deleteBidListById(BidListService.java:70)
+
+
+	at com.nnk.springboot.services.BidListServiceTest.testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent(BidListServiceTest.java:149)
+
+testUpdateBidList_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at com.nnk.springboot.services.BidListServiceTest.testUpdateBidList_BidListRepositoryFindByIdReturnsAbsent(BidListServiceTest.java:122)
+

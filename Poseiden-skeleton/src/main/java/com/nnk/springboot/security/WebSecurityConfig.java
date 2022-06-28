@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .usernameParameter("username")
                 .defaultSuccessUrl("/bidList/list")
                 .permitAll()

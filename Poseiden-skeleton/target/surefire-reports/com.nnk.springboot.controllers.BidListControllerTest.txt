@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.controllers.BidListControllerTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 10, Errors: 0, Skipped: 0, Time elapsed: 1.528 s <<< FAILURE! - in com.nnk.springboot.controllers.BidListControllerTest
+testUpdateBid_BidListServiceGetAllBidsReturnsNoItems  Time elapsed: 0.111 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testUpdateBid_BidListServiceGetAllBidsReturnsNoItems(BidListControllerTest.java:263)
+
+testUpdateBid  Time elapsed: 0.031 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testUpdateBid(BidListControllerTest.java:224)
+
+testHome  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testHome(BidListControllerTest.java:59)
+
+testValidate  Time elapsed: 0.012 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testValidate(BidListControllerTest.java:127)
+
+testDeleteBid_BidListServiceGetAllBidsReturnsNoItems  Time elapsed: 0.017 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testDeleteBid_BidListServiceGetAllBidsReturnsNoItems(BidListControllerTest.java:296)
+
+testShowUpdateForm  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testShowUpdateForm(BidListControllerTest.java:182)
+
+testDeleteBid  Time elapsed: 0.01 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testDeleteBid(BidListControllerTest.java:280)
+
+testValidate_BidListServiceGetAllBidsReturnsNoItems  Time elapsed: 0.044 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testValidate_BidListServiceGetAllBidsReturnsNoItems(BidListControllerTest.java:166)
+
+testAddBidForm  Time elapsed: 0.012 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testAddBidForm(BidListControllerTest.java:87)
+
+testHome_BidListServiceReturnsNoItems  Time elapsed: 0.009 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <200> but was: <302>
+	at com.nnk.springboot.controllers.BidListControllerTest.testHome_BidListServiceReturnsNoItems(BidListControllerTest.java:74)
+

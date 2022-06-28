@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(&quot;app&quot;)
+//@RequestMapping(&quot;/app&quot;)
 <span class="fc" id="L14">public class LoginController {</span>
 
 <span class="fc" id="L16">    Logger LOGGER = LogManager.getLogger(LoginController.class);</span>
@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 <span class="nc" id="L25">        return mav;</span>
     }
 
-    @GetMapping(&quot;secure/article-details&quot;)
+    @GetMapping(&quot;/app-secure/article-details&quot;)
     public ModelAndView getAllUserArticles() {
 <span class="nc" id="L30">        ModelAndView mav = new ModelAndView();</span>
 <span class="nc" id="L31">        mav.addObject(&quot;users&quot;, userRepository.findAll());</span>
@@ -33,7 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 <span class="nc" id="L33">        return mav;</span>
     }
 
-    @GetMapping(&quot;error&quot;)
+    @GetMapping(&quot;/app-error&quot;)
     public ModelAndView error() {
 <span class="nc" id="L38">        ModelAndView mav = new ModelAndView();</span>
 <span class="nc" id="L39">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>

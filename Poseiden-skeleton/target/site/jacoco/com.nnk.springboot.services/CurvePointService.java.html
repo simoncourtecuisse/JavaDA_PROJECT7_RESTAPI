@@ -8,64 +8,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 @Transactional
-<span class="fc" id="L17">public class CurvePointService {</span>
+<span class="fc" id="L22">public class CurvePointService {</span>
 
-<span class="fc" id="L19">    Logger LOGGER = LogManager.getLogger(CurvePointService.class);</span>
+<span class="fc" id="L24">    Logger LOGGER = LogManager.getLogger(CurvePointService.class);</span>
 
     @Autowired
     private CurvePointRepository curvePointRepository;
 
+<span class="fc" id="L29">    LocalDateTime now = LocalDateTime.now();</span>
+<span class="fc" id="L30">    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd HH:mm:ss&quot;);</span>
+<span class="fc" id="L31">    String formatDateTime = now.format(formatter);</span>
+
+
     public List&lt;CurvePoint&gt; getAllCurvePoints() {
-<span class="nc" id="L25">        return curvePointRepository.findAll();</span>
+<span class="fc" id="L35">        return curvePointRepository.findAll();</span>
     }
 
     public CurvePoint getCurvePointById(Integer id) {
-<span class="nc" id="L29">        Optional&lt;CurvePoint&gt; curvePoint = curvePointRepository.findById(id);</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (curvePoint.isPresent()) {</span>
-<span class="nc" id="L31">            LOGGER.info(&quot;Curve Point's successfully found&quot;);</span>
-<span class="nc" id="L32">            return curvePoint.get();</span>
+<span class="fc" id="L39">        Optional&lt;CurvePoint&gt; curvePoint = curvePointRepository.findById(id);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (curvePoint.isPresent()) {</span>
+<span class="fc" id="L41">            LOGGER.info(&quot;Curve Point's successfully found&quot;);</span>
+<span class="fc" id="L42">            return curvePoint.get();</span>
         } else {
-<span class="nc" id="L34">            LOGGER.error(&quot;Failed to find Curve Point&quot;);</span>
-<span class="nc" id="L35">            return null;</span>
+<span class="fc" id="L44">            LOGGER.error(&quot;Failed to find Curve Point&quot;);</span>
+<span class="fc" id="L45">            return null;</span>
         }
     }
 
     public void saveCurvePoint(CurvePoint curvePoint) {
-<span class="nc" id="L40">        curvePointRepository.save(curvePoint);</span>
-<span class="nc" id="L41">        LOGGER.info(&quot;Curve Point's successfully created&quot;);</span>
-<span class="nc" id="L42">    }</span>
+<span class="fc" id="L50">        curvePoint.setCreationDate(Timestamp.valueOf(formatDateTime));</span>
+<span class="fc" id="L51">        curvePointRepository.save(curvePoint);</span>
+<span class="fc" id="L52">        LOGGER.info(&quot;Curve Point's successfully created&quot;);</span>
+<span class="fc" id="L53">    }</span>
 
     public boolean updateCurvePoint(Integer id, CurvePoint curvePoint) {
-<span class="nc" id="L45">        boolean updated = false;</span>
-<span class="nc" id="L46">        Optional&lt;CurvePoint&gt; refCurvePoint = curvePointRepository.findById(id);</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (refCurvePoint.isPresent()) {</span>
-<span class="nc" id="L48">            CurvePoint updatedCurvePoint = refCurvePoint.get();</span>
-<span class="nc" id="L49">            updatedCurvePoint.setCurveId(curvePoint.getCurveId());</span>
-<span class="nc" id="L50">            updatedCurvePoint.setTerm(curvePoint.getTerm());</span>
-<span class="nc" id="L51">            updatedCurvePoint.setValue(curvePoint.getValue());</span>
-<span class="nc" id="L52">            curvePointRepository.save(updatedCurvePoint);</span>
-<span class="nc" id="L53">            updated = true;</span>
-<span class="nc" id="L54">            LOGGER.info(&quot;Curve Point's successfully updated&quot;);</span>
-<span class="nc" id="L55">        } else {</span>
-<span class="nc" id="L56">            LOGGER.error(&quot;Failed to update Curve Point&quot;);</span>
+<span class="fc" id="L56">        boolean updated = false;</span>
+<span class="fc" id="L57">        Optional&lt;CurvePoint&gt; refCurvePoint = curvePointRepository.findById(id);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (refCurvePoint.isPresent()) {</span>
+<span class="fc" id="L59">            CurvePoint updatedCurvePoint = refCurvePoint.get();</span>
+<span class="fc" id="L60">            updatedCurvePoint.setCurveId(curvePoint.getCurveId());</span>
+<span class="fc" id="L61">            updatedCurvePoint.setTerm(curvePoint.getTerm());</span>
+<span class="fc" id="L62">            updatedCurvePoint.setValue(curvePoint.getValue());</span>
+<span class="fc" id="L63">            updatedCurvePoint.setAsOfDate(Timestamp.valueOf(formatDateTime));</span>
+<span class="fc" id="L64">            curvePointRepository.save(updatedCurvePoint);</span>
+<span class="fc" id="L65">            updated = true;</span>
+<span class="fc" id="L66">            LOGGER.info(&quot;Curve Point's successfully updated&quot;);</span>
+<span class="fc" id="L67">        } else {</span>
+<span class="fc" id="L68">            LOGGER.error(&quot;Failed to update Curve Point&quot;);</span>
         }
-<span class="nc" id="L58">        return updated;</span>
+<span class="fc" id="L70">        return updated;</span>
     }
 
     public void deleteCurvePointById(Integer id) {
-<span class="nc" id="L62">        Optional&lt;CurvePoint&gt; removeCurvePoint = curvePointRepository.findById(id);</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (removeCurvePoint.isPresent()) {</span>
-<span class="nc" id="L64">            curvePointRepository.delete(removeCurvePoint.get());</span>
-<span class="nc" id="L65">            LOGGER.info(&quot;Curve Point's successfully deleted&quot;);</span>
+<span class="fc" id="L74">        Optional&lt;CurvePoint&gt; removeCurvePoint = curvePointRepository.findById(id);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (removeCurvePoint.isPresent()) {</span>
+<span class="fc" id="L76">            curvePointRepository.delete(removeCurvePoint.get());</span>
+<span class="fc" id="L77">            LOGGER.info(&quot;Curve Point's successfully deleted&quot;);</span>
         } else {
-<span class="nc" id="L67">            LOGGER.error(&quot;Failed to delete Curve Point&quot;);</span>
+<span class="fc" id="L79">            LOGGER.error(&quot;Failed to delete Curve Point&quot;);</span>
         }
-<span class="nc" id="L69">    }</span>
+<span class="fc" id="L81">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
