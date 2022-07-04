@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = &quot;User&quot;)
@@ -45,14 +46,13 @@ public class User {
     @NotBlank(message = &quot;Role is mandatory&quot;)
     private String role;
 
-<span class="fc" id="L48">    public User() {</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L49">    public User() {</span>
+<span class="fc" id="L50">    }</span>
 
-<span class="fc" id="L51">    public User(String username, String password, String fullName) {</span>
-<span class="fc" id="L52">        this.username = username;</span>
-<span class="fc" id="L53">        this.password = password;</span>
-<span class="fc" id="L54">        this.fullName = fullName;</span>
-        //this.role = role;
+<span class="fc" id="L52">    public User(String username, String password, String fullName) {</span>
+<span class="fc" id="L53">        this.username = username;</span>
+<span class="fc" id="L54">        this.password = password;</span>
+<span class="fc" id="L55">        this.fullName = fullName;</span>
 <span class="fc" id="L56">    }</span>
 
     public Integer getId() {
@@ -94,5 +94,18 @@ public class User {
     public void setRole(String role) {
 <span class="fc" id="L95">        this.role = role;</span>
 <span class="fc" id="L96">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if (!(o instanceof User)) return false;</span>
+<span class="fc" id="L102">        User user = (User) o;</span>
+<span class="pc bpc" id="L103" title="7 of 10 branches missed.">        return id.equals(user.id) &amp;&amp; username.equals(user.username) &amp;&amp; password.equals(user.password) &amp;&amp; fullName.equals(user.fullName) &amp;&amp; role.equals(user.role);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L108">        return Objects.hash(id, username, password, fullName, role);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -5,6 +5,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity(name = "Rating")
 @Table(name = "rating")
@@ -88,5 +89,18 @@ public class Rating {
 
     public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Rating)) return false;
+        Rating rating = (Rating) o;
+        return id.equals(rating.id) && moodyRating.equals(rating.moodyRating) && sandPRating.equals(rating.sandPRating) && fitchRating.equals(rating.fitchRating) && orderNumber.equals(rating.orderNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, moodyRating, sandPRating, fitchRating, orderNumber);
     }
 }

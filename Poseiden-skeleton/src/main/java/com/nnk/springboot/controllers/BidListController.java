@@ -64,8 +64,11 @@ public class BidListController {
         if (result.hasErrors()) {
             return "bidList/update";
         } else {
+            System.out.println(bidList);
             boolean updated = bidListService.updateBidList(id, bidList);
+            System.out.println(updated);
             if (updated) {
+                LOGGER.info("BidList's successfully updated !");
                 model.addAttribute("allBidLists", bidListService.getAllBids());
             }
             return "redirect:/bidList/list";

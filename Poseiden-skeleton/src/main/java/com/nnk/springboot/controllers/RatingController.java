@@ -65,6 +65,7 @@ public class RatingController {
         } else {
             boolean updated = ratingService.updateRating(id, rating);
             if (updated) {
+                LOGGER.info("Rating's successfully updated !");
                 model.addAttribute("allRatings", ratingService.getAllRatings());
             }
             return "redirect:/rating/list";

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "User")
@@ -52,7 +53,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        //this.role = role;
     }
 
     public Integer getId() {
@@ -93,5 +93,18 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return id.equals(user.id) && username.equals(user.username) && password.equals(user.password) && fullName.equals(user.fullName) && role.equals(user.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, fullName, role);
     }
 }

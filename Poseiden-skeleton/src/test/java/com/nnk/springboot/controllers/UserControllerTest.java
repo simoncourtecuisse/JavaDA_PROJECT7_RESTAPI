@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -56,7 +57,7 @@ public class UserControllerTest {
     private DataSource dataSource;
 
     @Test
-    public void getAllUsers() throws Exception {
+    public void testGetAllUsers() throws Exception {
         ArrayList<User> users = new ArrayList<>();
         when(mockUserService.getAllUsers()).thenReturn(users);
 
@@ -66,14 +67,14 @@ public class UserControllerTest {
     }
 
     @Test
-    public void addUser() throws Exception {
+    public void testAddUser() throws Exception {
         this.mockMvc.perform(get("/user/add"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/add"));
     }
 
     @Test
-    public void validateUser() throws Exception {
+    public void testValidateUser() throws Exception {
         User user = new User("username", "Password123_", "fullName");
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);
@@ -91,7 +92,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void validateUser_UsernameAlreadyExists() throws Exception {
+    public void testValidateUser_UsernameAlreadyExists() throws Exception {
         Optional<User> user = Optional.of(new User("username", "Password123_", "fullName"));
         when(mockUserRepository.findByUsername("username")).thenReturn(user);
 
@@ -114,7 +115,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void validateUser_BadRequest() throws Exception {
+    public void testValidateUser_BadRequest() throws Exception {
         User user = new User("username", "Password123_", "fullName");
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);
@@ -130,7 +131,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void showUpdateFormForUser() throws Exception {
+    public void testShowUpdateFormForUser() throws Exception {
         User user = new User("username", "Password123_", "fullName");
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);
@@ -143,29 +144,31 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateUser() throws Exception {
-        User user = new User("username", "Password123_", "fullName");
+    public void testUpdateUser() throws Exception {
+        User user = new User("username", "123", "fullName");
+        user.setId(1);
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode("123"));
 
         when(mockUserService.updateUser(1, user)).thenReturn(true);
-        boolean updated = mockUserService.updateUser(1, user);
         ArrayList<User> users = new ArrayList<>();
         users.add(user);
         when(mockUserService.getAllUsers()).thenReturn(users);
 
         this.mockMvc.perform(post("/user/update/1")
-                        .param("username", "username1")
-                        .param("password", "Password123_1")
-                        .param("fullName", "fullName1")
-                        .param("role", "USER"))
+                        .param("username", "username")
+                        .param("password", user.getPassword())
+                        .param("fullName", "fullName")
+                        .param("role", "ADMIN"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/user/list"))
                 .andExpect(model().hasNoErrors());
     }
 
     @Test
-    public void updateUser_BadRequest() throws Exception {
+    public void testUpdateUser_BadRequest() throws Exception {
         User user = new User("username", "Password123_", "fullName");
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);
@@ -182,7 +185,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void deleteUser() throws Exception {
+    public void testDeleteUser() throws Exception {
         User user = new User("username", "Password123_", "fullName");
         user.setRole("ADMIN");
         when(mockUserService.getUserById(1)).thenReturn(user);

@@ -103,21 +103,19 @@ public class CurvePointControllerTest {
     @Test
     public void testUpdateCurvePoint() throws Exception {
         CurvePoint curvePoint = new CurvePoint(1, 1.1, 1.1);
+        curvePoint.setId(1);
         when(mockCurvePointService.getCurvePointById(1)).thenReturn(curvePoint);
 
         when(mockCurvePointService.updateCurvePoint(1, curvePoint)).thenReturn(true);
-        boolean updated = mockCurvePointService.updateCurvePoint(1, curvePoint);
-        System.out.println(updated);
         ArrayList<CurvePoint> curvePoints = new ArrayList<>();
         curvePoints.add(curvePoint);
         when(mockCurvePointService.getAllCurvePoints()).thenReturn(curvePoints);
-        when(mockCurvePointService.updateCurvePoint(1, curvePoint)).thenReturn(true);
-        System.out.println(curvePoints);
 
         this.mockMvc.perform(post("/curvePoint/update/1")
-                        .param("curveId", "2")
-                        .param("term", "2.2")
-                        .param("value", "2.2"))
+                        .param("id", "1")
+                        .param("curveId", "1")
+                        .param("term", "1.1")
+                        .param("value", "1.1"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/curvePoint/list"))
                 .andExpect(model().hasNoErrors());

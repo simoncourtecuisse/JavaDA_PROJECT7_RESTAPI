@@ -115,21 +115,20 @@ public class TradeControllerTest {
     @Test
     public void testUpdateTrade() throws Exception {
         Trade trade = new Trade("account1", "type1");
+        trade.setTradeId(1);
+        trade.setBuyQuantity(1.1);
         when(mockTradeService.getTradeById(1)).thenReturn(trade);
 
         when(mockTradeService.updateTrade(1, trade)).thenReturn(true);
-        boolean updated = mockTradeService.updateTrade(1, trade);
-        System.out.println(updated);
         ArrayList<Trade> trades = new ArrayList<>();
         trades.add(trade);
         when(mockTradeService.getAllTrades()).thenReturn(trades);
-        when(mockTradeService.updateTrade(1, trade)).thenReturn(true);
-        System.out.println(trades);
 
         this.mockMvc.perform(post("/trade/update/1")
-                        .param("account", "account2")
-                        .param("type", "type2")
-                        .param("buyQuantity", "2.2"))
+                        .param("tradeId", "1")
+                        .param("account", "account1")
+                        .param("type", "type1")
+                        .param("buyQuantity", "1.1"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/trade/list"))
                 .andExpect(model().hasNoErrors());

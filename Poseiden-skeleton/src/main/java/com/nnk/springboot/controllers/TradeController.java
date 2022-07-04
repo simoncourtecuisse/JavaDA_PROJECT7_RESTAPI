@@ -64,6 +64,7 @@ public class TradeController {
             return "trade/update";
         } else {
             boolean updated = tradeService.updateTrade(id, trade);
+            System.out.println(updated);
             if (updated) {
                 LOGGER.info("Trade's successfully updated !");
                 model.addAttribute("allTrades", tradeService.getAllTrades());

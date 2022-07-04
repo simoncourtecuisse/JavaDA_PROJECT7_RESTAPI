@@ -109,24 +109,21 @@ public class RuleNameControllerTest {
     @Test
     public void testUpdateRuleName() throws Exception {
         RuleName ruleName = new RuleName("name1", "description1", "json1", "template1", "sqlStr1", "sqlPart1");
+        ruleName.setId(1);
         when(mockRuleNameService.getRuleNameById(1)).thenReturn(ruleName);
 
         when(mockRuleNameService.updateRuleName(1, ruleName)).thenReturn(true);
-        boolean updated = mockRuleNameService.updateRuleName(1, ruleName);
-        System.out.println(updated);
         ArrayList<RuleName> ruleNames = new ArrayList<>();
         ruleNames.add(ruleName);
         when(mockRuleNameService.getAllRuleNames()).thenReturn(ruleNames);
-        when(mockRuleNameService.updateRuleName(1, ruleName)).thenReturn(true);
-        System.out.println(ruleNames);
 
         this.mockMvc.perform(post("/ruleName/update/1")
-                        .param("name", "name2")
-                        .param("description", "description2")
-                        .param("json", "json2")
-                        .param("template", "template2")
-                        .param("sqlStr", "sqlStr2")
-                        .param("sqlPart", "sqlPart2"))
+                        .param("name", "name1")
+                        .param("description", "description1")
+                        .param("json", "json1")
+                        .param("template", "template1")
+                        .param("sqlStr", "sqlStr1")
+                        .param("sqlPart", "sqlPart1"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/ruleName/list"))
                 .andExpect(model().hasNoErrors());

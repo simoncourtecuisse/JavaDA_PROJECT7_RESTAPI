@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +35,15 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("/user/list")
-    public String home(Model model) {
+    public String home(Authentication authentication, Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "user/list";
     }
+//    @RequestMapping("/user/list")
+//    public String home(Model model) {
+//        model.addAttribute("users", userService.getAllUsers());
+//        return "user/list";
+//    }
 
     @GetMapping("/user/add")
     public String addUser(User user) {
@@ -83,7 +89,9 @@ public class UserController {
             user.setPassword(encoder.encode(user.getPassword()));
             user.setId(id);
             boolean updated = userService.updateUser(id, user);
+            System.out.println(updated);
             if (updated) {
+                LOGGER.info("User's successfully updated !");
                 model.addAttribute("users", userService.getAllUsers());
             }
             return "redirect:/user/list";

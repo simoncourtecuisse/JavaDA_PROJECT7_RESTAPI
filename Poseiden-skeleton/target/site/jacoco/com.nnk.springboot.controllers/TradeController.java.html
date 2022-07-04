@@ -64,20 +64,21 @@ import javax.validation.Valid;
 <span class="fc" id="L64">            return &quot;trade/update&quot;;</span>
         } else {
 <span class="fc" id="L66">            boolean updated = tradeService.updateTrade(id, trade);</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (updated) {</span>
-<span class="nc" id="L68">                LOGGER.info(&quot;Trade's successfully updated !&quot;);</span>
-<span class="nc" id="L69">                model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+<span class="fc" id="L67">            System.out.println(updated);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if (updated) {</span>
+<span class="fc" id="L69">                LOGGER.info(&quot;Trade's successfully updated !&quot;);</span>
+<span class="fc" id="L70">                model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
             }
-<span class="fc" id="L71">            return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L72">            return &quot;redirect:/trade/list&quot;;</span>
         }
     }
 
     @GetMapping(&quot;/trade/delete/{id}&quot;)
     public String deleteTrade(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Trade by Id and delete the Trade, return to Trade list
-<span class="fc" id="L78">        tradeService.deleteTradeById(id);</span>
-<span class="fc" id="L79">        model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
-<span class="fc" id="L80">        return &quot;redirect:/trade/list&quot;;</span>
+<span class="fc" id="L79">        tradeService.deleteTradeById(id);</span>
+<span class="fc" id="L80">        model.addAttribute(&quot;allTrades&quot;, tradeService.getAllTrades());</span>
+<span class="fc" id="L81">        return &quot;redirect:/trade/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

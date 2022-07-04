@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity(name = "bidList")
 @Table(name = "bid_list")
@@ -292,5 +293,18 @@ public class BidList {
                 ", type='" + type + '\'' +
                 ", bidQuantity=" + bidQuantity +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BidList)) return false;
+        BidList bidList = (BidList) o;
+        return Double.compare(bidList.bidQuantity, bidQuantity) == 0 && bidListId.equals(bidList.bidListId) && account.equals(bidList.account) && type.equals(bidList.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bidListId, account, type, bidQuantity);
     }
 }

@@ -3,6 +3,7 @@ package com.nnk.springboot.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity(name = "ruleName")
 @Table(name = "rule_name")
@@ -112,5 +113,18 @@ public class RuleName {
 
     public void setSqlPart(String sqlPart) {
         this.sqlPart = sqlPart;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RuleName)) return false;
+        RuleName ruleName = (RuleName) o;
+        return id.equals(ruleName.id) && name.equals(ruleName.name) && description.equals(ruleName.description) && json.equals(ruleName.json) && template.equals(ruleName.template) && sqlStr.equals(ruleName.sqlStr) && sqlPart.equals(ruleName.sqlPart);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, json, template, sqlStr, sqlPart);
     }
 }

@@ -65,6 +65,7 @@ public class CurveController {
         } else {
             boolean updated = curvePointService.updateCurvePoint(id, curvePoint);
             if (updated) {
+                LOGGER.info("Curve Point's successfully updated !");
                 model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoints());
             }
             return "redirect:/curvePoint/list";

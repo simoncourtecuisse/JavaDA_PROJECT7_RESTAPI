@@ -106,23 +106,20 @@ public class BidListControllerTest {
     @Test
     public void testUpdateBidList() throws Exception {
         BidList bid1 = new BidList("account1", "type1", 11.1);
+        bid1.setBidListId(1);
         when(mockBidListService.getBidById(1)).thenReturn(bid1);
 
         when(mockBidListService.updateBidList(1, bid1)).thenReturn(true);
-        boolean updated = mockBidListService.updateBidList(1, bid1);
-        System.out.println(updated);
         ArrayList<BidList> bidLists = new ArrayList<>();
         bidLists.add(bid1);
         when(mockBidListService.getAllBids()).thenReturn(bidLists);
-        System.out.println(bidLists);
 
         this.mockMvc.perform(post("/bidList/update/1")
-                        .param("account", "account2")
-                        .param("type", "type2")
-                        .param("bidQuantity", "22.2"))
+                        .param("bidListId", "1")
+                        .param("account", "account1")
+                        .param("type", "type1")
+                        .param("bidQuantity", "11.1"))
                 .andExpect(status().isFound())
-//                .andExpect(model().attribute("allBidLists", hasItem(bid1)))                   ???
-
                 .andExpect(redirectedUrl("/bidList/list"))
                 .andExpect(model().hasNoErrors());
     }

@@ -109,21 +109,19 @@ public class RatingControllerTest {
         @Test
         public void testUpdateRating() throws Exception {
             Rating rating = new Rating("moodyRating1", "sandPRating1", "fitchRating1", 1);
+            rating.setId(1);
             when(mockRatingService.getRatingById(1)).thenReturn(rating);
 
             when(mockRatingService.updateRating(1, rating)).thenReturn(true);
-            boolean updated = mockRatingService.updateRating(1, rating);
-            System.out.println(updated);
             ArrayList<Rating> ratings = new ArrayList<>();
             ratings.add(rating);
             when(mockRatingService.getAllRatings()).thenReturn(ratings);
-            System.out.println(ratings);
 
             this.mockMvc.perform(post("/rating/update/1")
-                    .param("moodyRating", "moodyRating2")
-                    .param("sandPRating", "sandPRating2")
-                    .param("fitchRating", "fitchRating2")
-                    .param("orderNumber", "2"))
+                    .param("moodyRating", "moodyRating1")
+                    .param("sandPRating", "sandPRating1")
+                    .param("fitchRating", "fitchRating1")
+                    .param("orderNumber", "1"))
                     .andExpect(status().isFound())
                     .andExpect(redirectedUrl("/rating/list"))
                     .andExpect(model().hasNoErrors());

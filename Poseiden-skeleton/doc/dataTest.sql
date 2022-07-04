@@ -1,18 +1,9 @@
 USE demo;
 
 INSERT INTO users (id, full_name, username, password, role)
-VALUES (0, 'admin', 'SuperAdmin', '$2a$10$GolCHmo.CxLanyXeHagmEOwS9H/zL1xa9ar09.MpEJbE019YWRvJa', 'ADMIN'),  -- password: admin123
-	   (1, 'Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa','ADMIN'),
-       (2,'User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER'); 
-       
-INSERT INTO roles(name)
-VALUES ('ROLE_USER'),
-       ('ROLE_ADMIN');
-       
-INSERT INTO user_roles (user_id, role_id)
-VALUES (0, 2),
-	   (1, 2),
-       (2, 1);
+VALUES (1, 'admin', 'SuperAdmin', '$2a$10$GolCHmo.CxLanyXeHagmEOwS9H/zL1xa9ar09.MpEJbE019YWRvJa', 'ADMIN'),  -- password: admin123
+	   (2, 'Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa','ADMIN'),
+       (3,'User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER'); 
        
 INSERT INTO bid_list (bid_list_id, account, type, bid_quantity, ask_quantity, bid, ask)
 VALUES (1, 'a', 'type-a', 10.0, 10.0, 10.0, 10.0),
@@ -46,7 +37,7 @@ VALUES  (1, 'name1','description1', 'json1', 'template1','sqlStr1', 'sqlPart1'),
         (3, 'name3', 'description3', 'json3', 'template3','sqlStr3', 'sqlPart3');
         
 UPDATE users_sequence
-SET next_val = '3';
+SET next_val = '4';
 
 UPDATE bid_list_sequence
 SET next_val = '5';

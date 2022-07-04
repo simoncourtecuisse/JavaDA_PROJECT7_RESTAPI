@@ -64,20 +64,23 @@ import javax.validation.Valid;
 <span class="fc bfc" id="L64" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
 <span class="fc" id="L65">            return &quot;bidList/update&quot;;</span>
         } else {
-<span class="fc" id="L67">            boolean updated = bidListService.updateBidList(id, bidList);</span>
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if (updated) {</span>
-<span class="nc" id="L69">                model.addAttribute(&quot;allBidLists&quot;, bidListService.getAllBids());</span>
+<span class="fc" id="L67">            System.out.println(bidList);</span>
+<span class="fc" id="L68">            boolean updated = bidListService.updateBidList(id, bidList);</span>
+<span class="fc" id="L69">            System.out.println(updated);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">            if (updated) {</span>
+<span class="fc" id="L71">                LOGGER.info(&quot;BidList's successfully updated !&quot;);</span>
+<span class="fc" id="L72">                model.addAttribute(&quot;allBidLists&quot;, bidListService.getAllBids());</span>
             }
-<span class="fc" id="L71">            return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L74">            return &quot;redirect:/bidList/list&quot;;</span>
         }
     }
 
     @GetMapping(&quot;/bidList/delete/{id}&quot;)
     public String deleteBid(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
-<span class="fc" id="L78">        bidListService.deleteBidListById(id);</span>
-<span class="fc" id="L79">        model.addAttribute(&quot;allBidLists&quot;, bidListService.getAllBids());</span>
-<span class="fc" id="L80">        return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L81">        bidListService.deleteBidListById(id);</span>
+<span class="fc" id="L82">        model.addAttribute(&quot;allBidLists&quot;, bidListService.getAllBids());</span>
+<span class="fc" id="L83">        return &quot;redirect:/bidList/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

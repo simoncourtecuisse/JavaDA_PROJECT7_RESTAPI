@@ -65,6 +65,7 @@ public class RuleNameController {
         } else {
             boolean updated = ruleNameService.updateRuleName(id, ruleName);
             if (updated) {
+                LOGGER.info("Rule Name's successfully updated !");
                 model.addAttribute("allRuleNames", ruleNameService.getAllRuleNames());
             }
             return "redirect:/ruleName/list";

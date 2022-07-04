@@ -65,18 +65,19 @@ import javax.validation.Valid;
         } else {
 <span class="fc" id="L66">            boolean updated = curvePointService.updateCurvePoint(id, curvePoint);</span>
 <span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (updated) {</span>
-<span class="nc" id="L68">                model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L68">                LOGGER.info(&quot;Curve Point's successfully updated !&quot;);</span>
+<span class="fc" id="L69">                model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
             }
-<span class="fc" id="L70">            return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L71">            return &quot;redirect:/curvePoint/list&quot;;</span>
         }
     }
 
     @GetMapping(&quot;/curvePoint/delete/{id}&quot;)
     public String deleteBid(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
-<span class="fc" id="L77">        curvePointService.deleteCurvePointById(id);</span>
-<span class="fc" id="L78">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
-<span class="fc" id="L79">        return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L78">        curvePointService.deleteCurvePointById(id);</span>
+<span class="fc" id="L79">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L80">        return &quot;redirect:/curvePoint/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

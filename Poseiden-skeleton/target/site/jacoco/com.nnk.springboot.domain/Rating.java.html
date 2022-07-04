@@ -5,6 +5,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity(name = &quot;Rating&quot;)
 @Table(name = &quot;rating&quot;)
@@ -41,53 +42,66 @@ public class Rating {
     @Column(name = &quot;order_Number&quot;)
     private Integer orderNumber;
 
-<span class="fc" id="L44">    public Rating() {}</span>
+<span class="fc" id="L45">    public Rating() {}</span>
 
-<span class="fc" id="L46">    public Rating(String moodyRating, String sandPRating, String fitchRating, Integer orderNumber) {</span>
-<span class="fc" id="L47">        this.moodyRating = moodyRating;</span>
-<span class="fc" id="L48">        this.sandPRating = sandPRating;</span>
-<span class="fc" id="L49">        this.fitchRating = fitchRating;</span>
-<span class="fc" id="L50">        this.orderNumber = orderNumber;</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc" id="L47">    public Rating(String moodyRating, String sandPRating, String fitchRating, Integer orderNumber) {</span>
+<span class="fc" id="L48">        this.moodyRating = moodyRating;</span>
+<span class="fc" id="L49">        this.sandPRating = sandPRating;</span>
+<span class="fc" id="L50">        this.fitchRating = fitchRating;</span>
+<span class="fc" id="L51">        this.orderNumber = orderNumber;</span>
+<span class="fc" id="L52">    }</span>
 
     public Integer getId() {
-<span class="fc" id="L54">        return id;</span>
+<span class="fc" id="L55">        return id;</span>
     }
 
     public void setId(Integer id) {
-<span class="fc" id="L58">        this.id = id;</span>
-<span class="fc" id="L59">    }</span>
+<span class="fc" id="L59">        this.id = id;</span>
+<span class="fc" id="L60">    }</span>
 
     public String getMoodyRating() {
-<span class="fc" id="L62">        return moodyRating;</span>
+<span class="fc" id="L63">        return moodyRating;</span>
     }
 
     public void setMoodyRating(String moodyRating) {
-<span class="fc" id="L66">        this.moodyRating = moodyRating;</span>
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L67">        this.moodyRating = moodyRating;</span>
+<span class="fc" id="L68">    }</span>
 
     public String getSandPRating() {
-<span class="fc" id="L70">        return sandPRating;</span>
+<span class="fc" id="L71">        return sandPRating;</span>
     }
 
     public void setSandPRating(String sandPRating) {
-<span class="fc" id="L74">        this.sandPRating = sandPRating;</span>
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L75">        this.sandPRating = sandPRating;</span>
+<span class="fc" id="L76">    }</span>
 
     public String getFitchRating() {
-<span class="fc" id="L78">        return fitchRating;</span>
+<span class="fc" id="L79">        return fitchRating;</span>
     }
 
     public void setFitchRating(String fitchRating) {
-<span class="fc" id="L82">        this.fitchRating = fitchRating;</span>
-<span class="fc" id="L83">    }</span>
+<span class="fc" id="L83">        this.fitchRating = fitchRating;</span>
+<span class="fc" id="L84">    }</span>
 
     public Integer getOrderNumber() {
-<span class="fc" id="L86">        return orderNumber;</span>
+<span class="fc" id="L87">        return orderNumber;</span>
     }
 
     public void setOrderNumber(Integer orderNumber) {
-<span class="fc" id="L90">        this.orderNumber = orderNumber;</span>
-<span class="fc" id="L91">    }</span>
+<span class="fc" id="L91">        this.orderNumber = orderNumber;</span>
+<span class="fc" id="L92">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (!(o instanceof Rating)) return false;</span>
+<span class="fc" id="L98">        Rating rating = (Rating) o;</span>
+<span class="pc bpc" id="L99" title="5 of 10 branches missed.">        return id.equals(rating.id) &amp;&amp; moodyRating.equals(rating.moodyRating) &amp;&amp; sandPRating.equals(rating.sandPRating) &amp;&amp; fitchRating.equals(rating.fitchRating) &amp;&amp; orderNumber.equals(rating.orderNumber);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L104">        return Objects.hash(id, moodyRating, sandPRating, fitchRating, orderNumber);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

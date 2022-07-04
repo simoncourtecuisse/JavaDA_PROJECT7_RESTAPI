@@ -7,6 +7,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 
 @Entity(name = "Trade")
@@ -268,5 +269,18 @@ public class Trade {
 
     public void setSide(String side) {
         this.side = side;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trade)) return false;
+        Trade trade = (Trade) o;
+        return Double.compare(trade.buyQuantity, buyQuantity) == 0 && tradeId.equals(trade.tradeId) && account.equals(trade.account) && type.equals(trade.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tradeId, account, type, buyQuantity);
     }
 }

@@ -14,6 +14,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 
 @Entity(name = "curvePoint")
@@ -114,5 +115,18 @@ public class CurvePoint {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CurvePoint)) return false;
+        CurvePoint that = (CurvePoint) o;
+        return Double.compare(that.term, term) == 0 && Double.compare(that.value, value) == 0 && id.equals(that.id) && curveId.equals(that.curveId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, curveId, term, value);
     }
 }
