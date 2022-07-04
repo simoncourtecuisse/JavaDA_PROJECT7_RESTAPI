@@ -1,6 +1,9 @@
 package com.nnk.springboot.security;
 //
 //import com.nnk.springboot.security.services.CustomOAuth2UserService;
+import com.nnk.springboot.domain.User;
+import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.security.services.CustomOidcUserService;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -41,6 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
+
     //@Profile("dev")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -58,8 +63,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .loginPage("/login")
-//                .userInfoEndpoint()
-//                .userService(userService)
+                .userInfoEndpoint()
+                .oidcUserService(customOidcUserService)
+                .and()
                 .and()
                 .logout().permitAll()
                 .and()
@@ -68,12 +74,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout");
     }
 
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("user").password("password").roles("USER");
+//    }
+
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
-    }
+    private CustomOidcUserService customOidcUserService;
 
 //    @Autowired
 //    private CustomOAuth2UserService userService;

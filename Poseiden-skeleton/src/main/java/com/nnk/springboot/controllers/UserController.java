@@ -35,7 +35,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("/user/list")
-    public String home(Authentication authentication, Model model) {
+    public String home(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "user/list";
     }
