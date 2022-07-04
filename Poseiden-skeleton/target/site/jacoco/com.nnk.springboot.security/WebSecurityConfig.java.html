@@ -42,7 +42,7 @@ import javax.sql.DataSource;
 <span class="fc" id="L42">        return new BCryptPasswordEncoder();</span>
     }
 
-    @Profile(&quot;dev&quot;)
+    //@Profile(&quot;dev&quot;)
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 <span class="fc" id="L48">        http.cors().and().csrf().disable()</span>
