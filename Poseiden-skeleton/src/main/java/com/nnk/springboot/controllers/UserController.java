@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+import com.nnk.springboot.security.OAuth.CustomOAuth2User;
+import com.nnk.springboot.security.OAuth.UserPrincipal;
 import com.nnk.springboot.services.PasswordConstraintValidator;
 import com.nnk.springboot.services.UserService;
 import org.apache.logging.log4j.LogManager;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +38,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @RequestMapping("/user/list")
-    public String home(Model model) {
+    public String home(UserPrincipal user, Model model) {
+
+//        public String home(Model model, @AuthenticationPrincipal CustomOAuth2User customOAuth2User) {
+       // model.addAttribute("username", user.getAttribute("username"));
         model.addAttribute("users", userService.getAllUsers());
         return "user/list";
     }

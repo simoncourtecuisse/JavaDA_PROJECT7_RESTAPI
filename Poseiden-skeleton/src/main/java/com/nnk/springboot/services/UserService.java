@@ -1,5 +1,6 @@
 package com.nnk.springboot.services;
 
+import com.nnk.springboot.domain.AuthenticationProvider;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +28,11 @@ public class UserService {
         LOGGER.info("User's successfully found");
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid User Id: " + id));
+    }
+
+    public User getUserByUsername(String username) {
+        LOGGER.info("User's successfully found");
+        return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Invalid User Username: " + username));
     }
 
 //    public User getUserById(Integer id) {
@@ -65,4 +71,21 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public void saveUserAfterLoginOAuthLoginSuccess(String loginName, String displayName, AuthenticationProvider provider) {
+        User user = new User();
+        user.setUsername(loginName);
+        user.setFullName(displayName);
+//        user.setPassword(loginName);
+//        user.setRole("USER");
+        user.setAuthProvider(provider);
+
+        userRepository.save(user);
+    }
+
+    public void updateUserOAuth(User user, String displayName, AuthenticationProvider provider) {
+        user.setFullName(displayName);
+        user.setAuthProvider(provider);
+
+        userRepository.save(user);
+    }
 }

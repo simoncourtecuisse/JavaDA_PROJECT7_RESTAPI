@@ -46,6 +46,10 @@ public class User {
     @NotBlank(message = "Role is mandatory")
     private String role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider")
+    private AuthenticationProvider authProvider;
+
     public User() {
     }
 
@@ -93,6 +97,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public AuthenticationProvider getAuthProvider() {
+        return authProvider;
+    }
+
+    public void setAuthProvider(AuthenticationProvider authProvider) {
+        this.authProvider = authProvider;
     }
 
     @Override
