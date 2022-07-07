@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,6 +24,9 @@
                    data-cip-id="password">
         </p>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p class="text-center">
+            <a th:href="@{/oauth2/authorization/github}">Login with GitHub</a>
+        </p>
         <p class="text-center">
             or create one
         <a href="/user/list">User management</a>

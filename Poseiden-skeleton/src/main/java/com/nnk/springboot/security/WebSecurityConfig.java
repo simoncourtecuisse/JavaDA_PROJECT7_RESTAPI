@@ -13,6 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 
 import javax.sql.DataSource;
 
@@ -47,6 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+//                .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/", "/user/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated()
@@ -57,12 +64,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/bidList/list")
                 .permitAll()
                 .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .and()
                 .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/403");
         http.logout()
                 .logoutUrl("/logout");
     }
+
+//
 //
 //    @Profile("test")
 //    @Override
