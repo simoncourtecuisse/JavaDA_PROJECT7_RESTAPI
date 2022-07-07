@@ -6,6 +6,7 @@ import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.security.OAuth.CustomOAuth2UserService;
 import com.nnk.springboot.security.OAuth.OAuth2LoginSuccessHandler;
 import com.nnk.springboot.security.services.CustomOidcUserService;
+import com.nnk.springboot.security.services.DatabaseLoginSuccessHandler;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -78,6 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("username")
                 .defaultSuccessUrl("/bidList/list")
+                .successHandler(databaseLoginSuccessHandler)
                 .permitAll()
                 .and()
                 .oauth2Login()
@@ -106,6 +108,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
+    @Autowired
+    private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
 
     //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

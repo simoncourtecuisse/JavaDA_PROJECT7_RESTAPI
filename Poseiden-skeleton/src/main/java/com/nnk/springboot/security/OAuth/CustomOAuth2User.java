@@ -40,4 +40,11 @@ public class CustomOAuth2User implements OAuth2User {
     public String getLogin() {
         return user.getAttribute("login");
     }
+
+    @Override
+    public String toString() {
+        return "CustomOAuth2User{" +
+                "user=" + user +
+                '}';
+    }
 }

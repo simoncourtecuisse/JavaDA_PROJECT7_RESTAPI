@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Transactional
@@ -69,6 +70,12 @@ public class UserService {
 
     public void deleteUserById(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    public void updateAuthenticationProvider(String username, String oauth2ClientName) {
+        AuthenticationProvider authProvider = AuthenticationProvider.valueOf(oauth2ClientName.toUpperCase(Locale.ROOT));
+        userRepository.updateAuthenticationProvider(username, authProvider);
+        System.out.println("Updated user's authentication type to " + authProvider);
     }
 
     public void saveUserAfterLoginOAuthLoginSuccess(String loginName, String displayName, AuthenticationProvider provider) {
