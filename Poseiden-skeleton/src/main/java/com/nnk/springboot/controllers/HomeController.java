@@ -1,10 +1,14 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.domain.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -22,6 +26,5 @@ public class HomeController {
 	{
 		return "redirect:/bidList/list";
 	}
-
 
 }

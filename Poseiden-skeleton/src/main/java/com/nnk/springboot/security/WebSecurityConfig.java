@@ -1,5 +1,6 @@
 package com.nnk.springboot.security;
 
+import com.nnk.springboot.security.oauth.CustomOAuth2UserService;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,11 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Profile("dev")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/", "/user/**", "/css/**", "/js/**").permitAll()
                 .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated()
@@ -57,12 +58,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/bidList/list")
                 .permitAll()
                 .and()
-                .logout().permitAll()
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(userService)
                 .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll();
         http.logout()
                 .logoutUrl("/logout");
     }
+
+    @Autowired
+    private CustomOAuth2UserService userService;
 //
 //    @Profile("test")
 //    @Override

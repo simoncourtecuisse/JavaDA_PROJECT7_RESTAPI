@@ -1,13 +1,17 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 @Controller
 //@RequestMapping("/app")
@@ -41,4 +45,21 @@ public class LoginController {
         mav.setViewName("403");
         return mav;
     }
+
+
+//    @RequestMapping("/userinfo")
+//    private StringBuffer getUsernamePasswordLoginInfo(Principal user)
+//    {
+//        StringBuffer usernameInfo = new StringBuffer();
+//
+//        UsernamePasswordAuthenticationToken token = ((UsernamePasswordAuthenticationToken) user);
+//        if(token.isAuthenticated()){
+//            User u = (User) token.getPrincipal();
+//            usernameInfo.append("Welcome, " + u.getUsername());
+//        }
+//        else{
+//            usernameInfo.append("NA");
+//        }
+//        return usernameInfo;
+//    }
 }
