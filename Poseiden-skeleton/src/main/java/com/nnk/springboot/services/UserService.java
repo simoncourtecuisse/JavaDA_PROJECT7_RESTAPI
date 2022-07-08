@@ -29,6 +29,11 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid User Id: " + id));
     }
 
+    public User getUserByUsername(String username) {
+        LOGGER.info("User's successfully found");
+        return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Invalid User Username: " + username));
+    }
+
 //    public User getUserById(Integer id) {
 //        Optional<User> user = userRepository.findById(id);
 //        if (user.isPresent()) {
@@ -64,5 +69,16 @@ public class UserService {
     public void deleteUserById(Integer id) {
         userRepository.deleteById(id);
     }
+
+    public void saveUserAfterLoginOAuthLoginSuccess(String loginName, String displayName) {
+        User user = new User();
+        user.setUsername(loginName);
+        user.setFullName(displayName);
+//        user.setPassword(loginName);
+//        user.setRole("USER");
+
+        userRepository.save(user);
+    }
+
 
 }

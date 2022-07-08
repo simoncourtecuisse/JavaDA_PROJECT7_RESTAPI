@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
+
 @Controller
 //@RequestMapping("/app")
 public class LoginController {
@@ -26,6 +28,7 @@ public class LoginController {
     }
 
     @GetMapping("/app-secure/article-details")
+    @RolesAllowed("ADMIN")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("users", userRepository.findAll());

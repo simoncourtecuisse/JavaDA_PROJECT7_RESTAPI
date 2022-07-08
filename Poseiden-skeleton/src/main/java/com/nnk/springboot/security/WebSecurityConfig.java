@@ -1,11 +1,14 @@
 package com.nnk.springboot.security;
 
+import com.nnk.springboot.security.services.CustomOAuth2UserService;
+import com.nnk.springboot.security.services.OAuth2LoginSuccessHandler;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 import javax.sql.DataSource;
 
@@ -27,14 +31,53 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Autowired
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    private ClientRegistrationRepository clientRegistrationRepository;
+
+    @Override
+    protected void configure(final AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder())
+                .and()
+                .authenticationProvider(authenticationProvider())
+                .jdbcAuthentication()
+                .dataSource(dataSource);
+        System.out.println(userDetailsService);
     }
 
-    @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+    protected void configure(final HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf()
+                .disable()
+                .authorizeRequests()
+//                .antMatchers("/", "/login", "/error/**", "/css/**").permitAll()
+                .antMatchers("/", "/user/**", "/css/**", "/js/**").permitAll()
+//                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").authenticated()
+                .antMatchers("/app-secure/**").hasAnyAuthority("ADMIN")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(customOAuth2UserService)
+                .and().successHandler(oAuth2LoginSuccessHandler)
+                .and()
+
+                .formLogin()
+                .defaultSuccessUrl("/bidList/list")
+                .permitAll()
+                .and()
+                .logout()
+//                .logoutUrl("/login")
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .and()
+                .rememberMe().key("uniqueAndSecret")
+                .and().exceptionHandling()
+                .accessDeniedPage("/app/error");
     }
 
     @Bean
@@ -42,33 +85,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Profile("dev")
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/user/**", "/css/**", "/js/**").permitAll()
-                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("username")
-                .defaultSuccessUrl("/bidList/list")
-                .permitAll()
-                .and()
-                .logout().permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403");
-        http.logout()
-                .logoutUrl("/logout");
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        System.out.println(authProvider);
+        return authProvider;
     }
-//
-//    @Profile("test")
-//    @Override
-////    @Profile("test")
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/**");
-//    }
 
 }
