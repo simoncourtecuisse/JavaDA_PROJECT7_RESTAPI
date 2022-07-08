@@ -34,17 +34,6 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException("Invalid User Username: " + username));
     }
 
-//    public User getUserById(Integer id) {
-//        Optional<User> user = userRepository.findById(id);
-//        if (user.isPresent()) {
-//            LOGGER.info("User's successfully found");
-//            return user.get();
-//        } else {
-//            LOGGER.error("Failed to find User");
-//            return null;
-//        }
-//    }
-
     public User saveUser(User user) {
         LOGGER.info("User's successfully created");
         return userRepository.save(user);
@@ -74,11 +63,14 @@ public class UserService {
         User user = new User();
         user.setUsername(loginName);
         user.setFullName(displayName);
-//        user.setPassword(loginName);
-//        user.setRole("USER");
+        user.setPassword("Github123!");
+        user.setRole("USER");
 
         userRepository.save(user);
     }
 
-
+    public void updateUserOAuth(User user, String displayName) {
+        user.setFullName(displayName);
+        userRepository.save(user);
+    }
 }
