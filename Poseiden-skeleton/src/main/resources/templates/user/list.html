@@ -54,10 +54,6 @@
 						<a th:href="@{/user/update/{id}(id=${user.id})}">Edit</a>
 						<a th:href="@{/user/delete/{id}(id=${user.id})}"sec:authorize="hasAuthority('ADMIN')">&nbsp;|&nbsp;Delete</a>
 					</td>
-<!--					<td sec:authorize="hasAuthority('ADMIN')" style="width: 15%" class="text-center">-->
-<!--						<a th:href="@{/user/update/{id}(id=${user.id})}" sec:authorize="hasAuthority('ADMIN')">Edit</a>&nbsp;|&nbsp;-->
-<!--						<a th:href="@{/user/delete/{id}(id=${user.id})}"sec:authorize="hasAuthority('ADMIN')">Delete</a>-->
-<!--					</td>-->
 				</tr>
 			</tbody>
 		</table>
