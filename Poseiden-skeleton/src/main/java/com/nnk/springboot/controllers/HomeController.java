@@ -13,16 +13,14 @@ public class HomeController {
 	Logger LOGGER = LogManager.getLogger(HomeController.class);
 
 	@RequestMapping("/")
-	public String home(Model model)
-	{
+	public String home(Model model)	{
+		LOGGER.info("Get the homepage");
 		return "home";
 	}
 
 	@RequestMapping("/admin/home")
-	public String adminHome(Model model)
-	{
+	public String adminHome(Model model) {
+		LOGGER.info("Get the admin homepage");
 		return "redirect:/bidList/list";
 	}
-
-
 }

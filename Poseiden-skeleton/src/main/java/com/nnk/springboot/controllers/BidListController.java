@@ -28,12 +28,14 @@ public class BidListController {
     @RequestMapping("/bidList/list")
     public String home(Model model) {
         // TODO: call service find all bids to show to the view
+        LOGGER.info("All BidList retrieved");
         model.addAttribute("allBidLists", bidListService.getAllBids());
         return "bidList/list";
     }
 
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
+        LOGGER.info("Getting the addBid Form");
         return "bidList/add";
     }
 
@@ -42,8 +44,8 @@ public class BidListController {
         // TODO: check data valid and save to db, after saving return bid list
         if (!result.hasErrors()) {
             bidListService.saveBidList(bid);
-            model.addAttribute("allBidLists", bidListService.getAllBids());
             LOGGER.info("BidList's successfully created !");
+            model.addAttribute("allBidLists", bidListService.getAllBids());
             return "redirect:/bidList/list";
         }
         LOGGER.error("Failed to create a new BidList");
@@ -53,6 +55,7 @@ public class BidListController {
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Bid by Id and to model then show to the form
+        LOGGER.info("Getting the updateBid Form");
         model.addAttribute("bidList", bidListService.getBidById(id));
         return "bidList/update";
     }
@@ -62,6 +65,7 @@ public class BidListController {
                             BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Bid and return list Bid
         if (result.hasErrors()) {
+            LOGGER.error("Failed to update BidList");
             return "bidList/update";
         } else {
             System.out.println(bidList);
@@ -79,6 +83,7 @@ public class BidListController {
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Bid by Id and delete the bid, return to Bid list
         bidListService.deleteBidListById(id);
+        LOGGER.info("BidList's successfully deleted !");
         model.addAttribute("allBidLists", bidListService.getAllBids());
         return "redirect:/bidList/list";
     }

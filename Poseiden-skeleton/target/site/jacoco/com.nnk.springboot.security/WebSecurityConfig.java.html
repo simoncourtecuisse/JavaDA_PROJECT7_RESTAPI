@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebSecurityConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.security</a> &gt; <span class="el_source">WebSecurityConfig.java</span></div><h1>WebSecurityConfig.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.security;
 
+import com.nnk.springboot.security.services.CustomOAuth2UserService;
+import com.nnk.springboot.security.services.OAuth2LoginSuccessHandler;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,12 +16,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-<span class="fc" id="L21">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {</span>
+<span class="fc" id="L25">public class WebSecurityConfig extends WebSecurityConfigurerAdapter {</span>
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -27,49 +31,72 @@ import javax.sql.DataSource;
     private DataSource dataSource;
 
     @Autowired
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-<span class="fc" id="L31">        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());</span>
-<span class="fc" id="L32">    }</span>
+    private ClientRegistrationRepository clientRegistrationRepository;
 
-    @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-<span class="fc" id="L37">        return super.authenticationManagerBean();</span>
-    }
+    protected void configure(final AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+<span class="fc" id="L38">        authenticationManagerBuilder</span>
+<span class="fc" id="L39">                .userDetailsService(userDetailsService)</span>
+<span class="fc" id="L40">                .passwordEncoder(passwordEncoder())</span>
+<span class="fc" id="L41">                .and()</span>
+<span class="fc" id="L42">                .authenticationProvider(authenticationProvider())</span>
+<span class="fc" id="L43">                .jdbcAuthentication()</span>
+<span class="fc" id="L44">                .dataSource(dataSource);</span>
+<span class="fc" id="L45">        System.out.println(userDetailsService);</span>
+<span class="fc" id="L46">    }</span>
+
+    @Override
+    protected void configure(final HttpSecurity httpSecurity) throws Exception {
+<span class="fc" id="L50">        httpSecurity</span>
+<span class="fc" id="L51">                .csrf()</span>
+<span class="fc" id="L52">                .disable()</span>
+<span class="fc" id="L53">                .authorizeRequests()</span>
+//                .antMatchers(&quot;/&quot;, &quot;/login&quot;, &quot;/error/**&quot;, &quot;/css/**&quot;).permitAll()
+<span class="fc" id="L55">                .antMatchers(&quot;/&quot;, &quot;/user/**&quot;, &quot;/css/**&quot;, &quot;/js/**&quot;).permitAll()</span>
+//                .antMatchers(&quot;/bidList/**&quot;, &quot;/curvePoint/**&quot;, &quot;/rating/**&quot;, &quot;/ruleName/**&quot;, &quot;/trade/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;, &quot;USER&quot;)
+<span class="fc" id="L57">                .antMatchers(&quot;/bidList/**&quot;, &quot;/curvePoint/**&quot;, &quot;/rating/**&quot;, &quot;/ruleName/**&quot;, &quot;/trade/**&quot;).authenticated()</span>
+<span class="fc" id="L58">                .antMatchers(&quot;/app-secure/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L59">                .anyRequest()</span>
+<span class="fc" id="L60">                .authenticated()</span>
+<span class="fc" id="L61">                .and()</span>
+<span class="fc" id="L62">                .oauth2Login()</span>
+<span class="fc" id="L63">                .userInfoEndpoint()</span>
+<span class="fc" id="L64">                .userService(customOAuth2UserService)</span>
+<span class="fc" id="L65">                .and().successHandler(oAuth2LoginSuccessHandler)</span>
+<span class="fc" id="L66">                .and()</span>
+<span class="fc" id="L67">                .formLogin()</span>
+<span class="fc" id="L68">                .defaultSuccessUrl(&quot;/bidList/list&quot;)</span>
+<span class="fc" id="L69">                .permitAll()</span>
+<span class="fc" id="L70">                .and()</span>
+<span class="fc" id="L71">                .logout()</span>
+<span class="fc" id="L72">                .invalidateHttpSession(true)</span>
+<span class="fc" id="L73">                .logoutSuccessUrl(&quot;/&quot;)</span>
+<span class="fc" id="L74">                .deleteCookies(&quot;JSESSIONID&quot;)</span>
+<span class="fc" id="L75">                .and()</span>
+<span class="fc" id="L76">                .rememberMe().key(&quot;uniqueAndSecret&quot;)</span>
+<span class="fc" id="L77">                .and().exceptionHandling()</span>
+<span class="fc" id="L78">                .accessDeniedPage(&quot;/app/error&quot;);</span>
+<span class="fc" id="L79">    }</span>
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-<span class="fc" id="L42">        return new BCryptPasswordEncoder();</span>
+<span class="fc" id="L83">        return new BCryptPasswordEncoder();</span>
     }
 
-    @Profile(&quot;dev&quot;)
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-<span class="fc" id="L48">        http.cors().and().csrf().disable()</span>
-<span class="fc" id="L49">                .authorizeRequests()</span>
-<span class="fc" id="L50">                .antMatchers(&quot;/&quot;, &quot;/user/**&quot;, &quot;/css/**&quot;, &quot;/js/**&quot;).permitAll()</span>
-<span class="fc" id="L51">                .antMatchers(&quot;/bidList/**&quot;, &quot;/curvePoint/**&quot;, &quot;/rating/**&quot;, &quot;/ruleName/**&quot;, &quot;/trade/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;, &quot;USER&quot;)</span>
-<span class="fc" id="L52">                .anyRequest().authenticated()</span>
-<span class="fc" id="L53">                .and()</span>
-<span class="fc" id="L54">                .formLogin()</span>
-<span class="fc" id="L55">                .loginPage(&quot;/login&quot;)</span>
-<span class="fc" id="L56">                .usernameParameter(&quot;username&quot;)</span>
-<span class="fc" id="L57">                .defaultSuccessUrl(&quot;/bidList/list&quot;)</span>
-<span class="fc" id="L58">                .permitAll()</span>
-<span class="fc" id="L59">                .and()</span>
-<span class="fc" id="L60">                .logout().permitAll()</span>
-<span class="fc" id="L61">                .and()</span>
-<span class="fc" id="L62">                .exceptionHandling().accessDeniedPage(&quot;/403&quot;);</span>
-<span class="fc" id="L63">        http.logout()</span>
-<span class="fc" id="L64">                .logoutUrl(&quot;/logout&quot;);</span>
-<span class="fc" id="L65">    }</span>
-//
-//    @Profile(&quot;test&quot;)
-//    @Override
-////    @Profile(&quot;test&quot;)
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(&quot;/**&quot;);
-//    }
+    @Autowired
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+<span class="fc" id="L94">        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();</span>
+<span class="fc" id="L95">        authProvider.setUserDetailsService(userDetailsService);</span>
+<span class="fc" id="L96">        authProvider.setPasswordEncoder(passwordEncoder());</span>
+<span class="fc" id="L97">        System.out.println(authProvider);</span>
+<span class="fc" id="L98">        return authProvider;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

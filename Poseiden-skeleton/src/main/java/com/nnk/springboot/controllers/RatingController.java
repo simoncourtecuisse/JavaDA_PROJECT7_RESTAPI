@@ -27,12 +27,14 @@ public class RatingController {
     @RequestMapping("/rating/list")
     public String home(Model model) {
         // TODO: find all Rating, add to model
+        LOGGER.info("All Ratings retrieved");
         model.addAttribute("allRatings", ratingService.getAllRatings());
         return "rating/list";
     }
 
     @GetMapping("/rating/add")
     public String addRatingForm(Rating rating) {
+        LOGGER.info("Getting the addRating Form");
         return "rating/add";
     }
 
@@ -41,8 +43,8 @@ public class RatingController {
         // TODO: check data valid and save to db, after saving return Rating list
         if (!result.hasErrors()) {
             ratingService.saveRating(rating);
-            model.addAttribute("allRatings", ratingService.getAllRatings());
             LOGGER.info("Rating's successfully created !");
+            model.addAttribute("allRatings", ratingService.getAllRatings());
             return "redirect:/rating/list";
         }
         LOGGER.error("Failed to create a new Rating");
@@ -52,6 +54,7 @@ public class RatingController {
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get Rating by Id and to model then show to the form
+        LOGGER.info("Getting the updateRating Form");
         model.addAttribute("rating", ratingService.getRatingById(id));
         return "rating/update";
     }
@@ -61,6 +64,7 @@ public class RatingController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Rating and return Rating list
         if (result.hasErrors()) {
+            LOGGER.error("Failed to update Rating");
             return "rating/update";
         } else {
             boolean updated = ratingService.updateRating(id, rating);
@@ -76,6 +80,7 @@ public class RatingController {
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Rating by Id and delete the Rating, return to Rating list
         ratingService.deleteRatingById(id);
+        LOGGER.info("Rating's successfully deleted !");
         model.addAttribute("allRatings", ratingService.getAllRatings());
         return "redirect:/rating/list";
     }

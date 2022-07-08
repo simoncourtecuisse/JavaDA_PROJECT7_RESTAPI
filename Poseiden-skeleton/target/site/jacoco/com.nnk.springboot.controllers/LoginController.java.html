@@ -9,37 +9,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
+
 @Controller
 //@RequestMapping(&quot;/app&quot;)
-<span class="fc" id="L14">public class LoginController {</span>
+<span class="fc" id="L16">public class LoginController {</span>
 
-<span class="fc" id="L16">    Logger LOGGER = LogManager.getLogger(LoginController.class);</span>
+<span class="fc" id="L18">    Logger LOGGER = LogManager.getLogger(LoginController.class);</span>
 
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping(&quot;login&quot;)
     public ModelAndView login() {
-<span class="fc" id="L23">        ModelAndView mav = new ModelAndView();</span>
-<span class="fc" id="L24">        mav.setViewName(&quot;login&quot;);</span>
-<span class="fc" id="L25">        return mav;</span>
+<span class="fc" id="L25">        ModelAndView mav = new ModelAndView();</span>
+<span class="fc" id="L26">        mav.setViewName(&quot;login&quot;);</span>
+<span class="fc" id="L27">        LOGGER.info(&quot;Get the login page&quot;);</span>
+<span class="fc" id="L28">        return mav;</span>
     }
 
     @GetMapping(&quot;/app-secure/article-details&quot;)
+    @RolesAllowed(&quot;ADMIN&quot;)
     public ModelAndView getAllUserArticles() {
-<span class="fc" id="L30">        ModelAndView mav = new ModelAndView();</span>
-<span class="fc" id="L31">        mav.addObject(&quot;users&quot;, userRepository.findAll());</span>
-<span class="fc" id="L32">        mav.setViewName(&quot;user/list&quot;);</span>
-<span class="fc" id="L33">        return mav;</span>
+<span class="fc" id="L34">        ModelAndView mav = new ModelAndView();</span>
+<span class="fc" id="L35">        mav.addObject(&quot;users&quot;, userRepository.findAll());</span>
+<span class="fc" id="L36">        mav.setViewName(&quot;user/list&quot;);</span>
+<span class="fc" id="L37">        LOGGER.info(&quot;Get the admin page&quot;);</span>
+<span class="fc" id="L38">        return mav;</span>
     }
 
     @GetMapping(&quot;/app-error&quot;)
     public ModelAndView error() {
-<span class="fc" id="L38">        ModelAndView mav = new ModelAndView();</span>
-<span class="fc" id="L39">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
-<span class="fc" id="L40">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
-<span class="fc" id="L41">        mav.setViewName(&quot;403&quot;);</span>
-<span class="fc" id="L42">        return mav;</span>
+<span class="fc" id="L43">        ModelAndView mav = new ModelAndView();</span>
+<span class="fc" id="L44">        String errorMessage= &quot;You are not authorized for the requested data.&quot;;</span>
+<span class="fc" id="L45">        mav.addObject(&quot;errorMsg&quot;, errorMessage);</span>
+<span class="fc" id="L46">        mav.setViewName(&quot;403&quot;);</span>
+<span class="fc" id="L47">        LOGGER.info(&quot;Get the error page&quot;);</span>
+<span class="fc" id="L48">        return mav;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

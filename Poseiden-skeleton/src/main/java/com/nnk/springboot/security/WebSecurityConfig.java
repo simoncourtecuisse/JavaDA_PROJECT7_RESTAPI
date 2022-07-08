@@ -64,13 +64,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .userService(customOAuth2UserService)
                 .and().successHandler(oAuth2LoginSuccessHandler)
                 .and()
-
                 .formLogin()
                 .defaultSuccessUrl("/bidList/list")
                 .permitAll()
                 .and()
                 .logout()
-//                .logoutUrl("/login")
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/")
                 .deleteCookies("JSESSIONID")

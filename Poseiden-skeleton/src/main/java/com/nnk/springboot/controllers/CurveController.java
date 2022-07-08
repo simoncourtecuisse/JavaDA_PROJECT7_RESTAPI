@@ -27,12 +27,14 @@ public class CurveController {
     @RequestMapping("/curvePoint/list")
     public String home(Model model) {
         // TODO: find all Curve Point, add to model
+        LOGGER.info("All BidList retrieved");
         model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoints());
         return "curvePoint/list";
     }
 
     @GetMapping("/curvePoint/add")
     public String addCurvePointForm(CurvePoint bid) {
+        LOGGER.info("Getting the addCurvePoint Form");
         return "curvePoint/add";
     }
 
@@ -41,8 +43,8 @@ public class CurveController {
         // TODO: check data valid and save to db, after saving return Curve list
         if (!result.hasErrors()) {
             curvePointService.saveCurvePoint(curvePoint);
-            model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoints());
             LOGGER.info("Curve Point's successfully created !");
+            model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoints());
             return "redirect:/curvePoint/list";
         }
         LOGGER.error("Failed to create a new Curve Point");
@@ -52,6 +54,7 @@ public class CurveController {
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get CurvePoint by Id and to model then show to the form
+        LOGGER.info("Getting the updateCurvePoint Form");
         model.addAttribute("curvePoint", curvePointService.getCurvePointById(id));
         return "curvePoint/update";
     }
@@ -61,6 +64,7 @@ public class CurveController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
         if (result.hasErrors()) {
+            LOGGER.error("Failed to update Curve Point");
             return "curvePoint/update";
         } else {
             boolean updated = curvePointService.updateCurvePoint(id, curvePoint);
@@ -76,6 +80,7 @@ public class CurveController {
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
         curvePointService.deleteCurvePointById(id);
+        LOGGER.info("Curve Point's successfully deleted !");
         model.addAttribute("allCurvePoints", curvePointService.getAllCurvePoints());
         return "redirect:/curvePoint/list";
     }

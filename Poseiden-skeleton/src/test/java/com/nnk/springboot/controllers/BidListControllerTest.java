@@ -1,6 +1,8 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.security.services.CustomOAuth2UserService;
+import com.nnk.springboot.security.services.OAuth2LoginSuccessHandler;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import com.nnk.springboot.services.BidListService;
 import org.junit.jupiter.api.Test;
@@ -43,6 +45,12 @@ public class BidListControllerTest {
 
     @MockBean
     private DataSource dataSource;
+
+    @MockBean
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @MockBean
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Test
     public void testGetAllBids() throws Exception {

@@ -14,6 +14,7 @@ com\nnk\springboot\services\TradeServiceTest.class
 com\nnk\springboot\PoseidonAppTest.class
 com\nnk\springboot\controllers\HomeControllerTest.class
 com\nnk\springboot\controllers\LoginControllerTest.class
+com\nnk\springboot\security\services\OAuth2LoginSuccessHandlerTest.class
 com\nnk\springboot\services\BidListServiceTest.class
 com\nnk\springboot\services\RuleNameServiceTest.class
 com\nnk\springboot\controllers\CurvePointControllerTest.class

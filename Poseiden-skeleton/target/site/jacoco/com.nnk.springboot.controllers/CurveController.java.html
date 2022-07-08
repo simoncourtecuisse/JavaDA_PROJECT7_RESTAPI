@@ -27,57 +27,62 @@ import javax.validation.Valid;
     @RequestMapping(&quot;/curvePoint/list&quot;)
     public String home(Model model) {
         // TODO: find all Curve Point, add to model
-<span class="fc" id="L30">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
-<span class="fc" id="L31">        return &quot;curvePoint/list&quot;;</span>
+<span class="fc" id="L30">        LOGGER.info(&quot;All BidList retrieved&quot;);</span>
+<span class="fc" id="L31">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L32">        return &quot;curvePoint/list&quot;;</span>
     }
 
     @GetMapping(&quot;/curvePoint/add&quot;)
     public String addCurvePointForm(CurvePoint bid) {
-<span class="fc" id="L36">        return &quot;curvePoint/add&quot;;</span>
+<span class="fc" id="L37">        LOGGER.info(&quot;Getting the addCurvePoint Form&quot;);</span>
+<span class="fc" id="L38">        return &quot;curvePoint/add&quot;;</span>
     }
 
     @PostMapping(&quot;/curvePoint/validate&quot;)
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         // TODO: check data valid and save to db, after saving return Curve list
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (!result.hasErrors()) {</span>
-<span class="fc" id="L43">            curvePointService.saveCurvePoint(curvePoint);</span>
-<span class="fc" id="L44">            model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
-<span class="fc" id="L45">            LOGGER.info(&quot;Curve Point's successfully created !&quot;);</span>
-<span class="fc" id="L46">            return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (!result.hasErrors()) {</span>
+<span class="fc" id="L45">            curvePointService.saveCurvePoint(curvePoint);</span>
+<span class="fc" id="L46">            LOGGER.info(&quot;Curve Point's successfully created !&quot;);</span>
+<span class="fc" id="L47">            model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L48">            return &quot;redirect:/curvePoint/list&quot;;</span>
         }
-<span class="fc" id="L48">        LOGGER.error(&quot;Failed to create a new Curve Point&quot;);</span>
-<span class="fc" id="L49">        return &quot;curvePoint/add&quot;;</span>
+<span class="fc" id="L50">        LOGGER.error(&quot;Failed to create a new Curve Point&quot;);</span>
+<span class="fc" id="L51">        return &quot;curvePoint/add&quot;;</span>
     }
 
     @GetMapping(&quot;/curvePoint/update/{id}&quot;)
     public String showUpdateForm(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: get CurvePoint by Id and to model then show to the form
-<span class="fc" id="L55">        model.addAttribute(&quot;curvePoint&quot;, curvePointService.getCurvePointById(id));</span>
-<span class="fc" id="L56">        return &quot;curvePoint/update&quot;;</span>
+<span class="fc" id="L57">        LOGGER.info(&quot;Getting the updateCurvePoint Form&quot;);</span>
+<span class="fc" id="L58">        model.addAttribute(&quot;curvePoint&quot;, curvePointService.getCurvePointById(id));</span>
+<span class="fc" id="L59">        return &quot;curvePoint/update&quot;;</span>
     }
 
     @PostMapping(&quot;/curvePoint/update/{id}&quot;)
     public String updateBid(@PathVariable(&quot;id&quot;) Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update Curve and return Curve list
-<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
-<span class="fc" id="L64">            return &quot;curvePoint/update&quot;;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (result.hasErrors()) {</span>
+<span class="fc" id="L67">            LOGGER.error(&quot;Failed to update Curve Point&quot;);</span>
+<span class="fc" id="L68">            return &quot;curvePoint/update&quot;;</span>
         } else {
-<span class="fc" id="L66">            boolean updated = curvePointService.updateCurvePoint(id, curvePoint);</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">            if (updated) {</span>
-<span class="fc" id="L68">                LOGGER.info(&quot;Curve Point's successfully updated !&quot;);</span>
-<span class="fc" id="L69">                model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L70">            boolean updated = curvePointService.updateCurvePoint(id, curvePoint);</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">            if (updated) {</span>
+<span class="fc" id="L72">                LOGGER.info(&quot;Curve Point's successfully updated !&quot;);</span>
+<span class="fc" id="L73">                model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
             }
-<span class="fc" id="L71">            return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L75">            return &quot;redirect:/curvePoint/list&quot;;</span>
         }
     }
 
     @GetMapping(&quot;/curvePoint/delete/{id}&quot;)
     public String deleteBid(@PathVariable(&quot;id&quot;) Integer id, Model model) {
         // TODO: Find Curve by Id and delete the Curve, return to Curve list
-<span class="fc" id="L78">        curvePointService.deleteCurvePointById(id);</span>
-<span class="fc" id="L79">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
-<span class="fc" id="L80">        return &quot;redirect:/curvePoint/list&quot;;</span>
+<span class="fc" id="L82">        curvePointService.deleteCurvePointById(id);</span>
+<span class="fc" id="L83">        LOGGER.info(&quot;Curve Point's successfully deleted !&quot;);</span>
+<span class="fc" id="L84">        model.addAttribute(&quot;allCurvePoints&quot;, curvePointService.getAllCurvePoints());</span>
+<span class="fc" id="L85">        return &quot;redirect:/curvePoint/list&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -27,12 +27,14 @@ public class RuleNameController {
     @RequestMapping("/ruleName/list")
     public String home(Model model) {
         // TODO: find all RuleName, add to model
+        LOGGER.info("All RuleNames retrieved");
         model.addAttribute("allRuleNames", ruleNameService.getAllRuleNames());
         return "ruleName/list";
     }
 
     @GetMapping("/ruleName/add")
     public String addRuleForm(RuleName bid) {
+        LOGGER.info("Getting the addRuleName Form");
         return "ruleName/add";
     }
 
@@ -41,6 +43,7 @@ public class RuleNameController {
         // TODO: check data valid and save to db, after saving return RuleName list
         if (!result.hasErrors()) {
             ruleNameService.saveRuleName(ruleName);
+            LOGGER.info("RuleName's successfully created !");
             model.addAttribute("allRuleNames", ruleNameService.getAllRuleNames());
             LOGGER.info("Rule Name's successfully created !");
             return "redirect:/ruleName/list";
@@ -52,6 +55,7 @@ public class RuleNameController {
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         // TODO: get RuleName by Id and to model then show to the form
+        LOGGER.info("Getting the updateRuleName Form");
         model.addAttribute("ruleName", ruleNameService.getRuleNameById(id));
         return "ruleName/update";
     }
@@ -61,6 +65,7 @@ public class RuleNameController {
                              BindingResult result, Model model) {
         // TODO: check required fields, if valid call service to update RuleName and return RuleName list
         if (result.hasErrors()) {
+            LOGGER.error("Failed to update RuleName");
             return "ruleName/update";
         } else {
             boolean updated = ruleNameService.updateRuleName(id, ruleName);
@@ -76,6 +81,7 @@ public class RuleNameController {
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
         ruleNameService.deleteRuleNameById(id);
+        LOGGER.info("RuleName's successfully deleted !");
         model.addAttribute("allRuleNames", ruleNameService.getAllRuleNames());
         return "redirect:/ruleName/list";
     }

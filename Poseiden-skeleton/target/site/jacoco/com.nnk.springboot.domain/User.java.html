@@ -105,7 +105,18 @@ public class User {
 
     @Override
     public int hashCode() {
-<span class="fc" id="L108">        return Objects.hash(id, username, password, fullName, role);</span>
+<span class="nc" id="L108">        return Objects.hash(id, username, password, fullName, role);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L113">        return &quot;User{&quot; +</span>
+                &quot;id=&quot; + id +
+                &quot;, username='&quot; + username + '\'' +
+                &quot;, password='&quot; + password + '\'' +
+                &quot;, fullName='&quot; + fullName + '\'' +
+                &quot;, role='&quot; + role + '\'' +
+                '}';
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

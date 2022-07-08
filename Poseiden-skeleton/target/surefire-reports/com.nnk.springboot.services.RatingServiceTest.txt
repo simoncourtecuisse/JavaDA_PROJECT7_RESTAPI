@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.nnk.springboot.services.RatingServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.012 s <<< FAILURE! - in com.nnk.springboot.services.RatingServiceTest
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! - in com.nnk.springboot.services.RatingServiceTest
 testUpdateRating_RatingRepositoryFindByIdReturnsAbsent  Time elapsed: 0 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at com.nnk.springboot.services.RatingServiceTest.testUpdateRating_RatingRepositoryFindByIdReturnsAbsent(RatingServiceTest.java:130)
 
-testDeleteRatingById_RatingRepositoryFindByIdReturnsAbsent  Time elapsed: 0.001 s  <<< FAILURE!
+testDeleteRatingById_RatingRepositoryFindByIdReturnsAbsent  Time elapsed: 0 s  <<< FAILURE!
 org.mockito.exceptions.verification.WantedButNotInvoked: 
 
 Wanted but not invoked:

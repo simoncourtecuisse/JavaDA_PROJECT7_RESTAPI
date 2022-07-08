@@ -2,6 +2,8 @@ package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.security.services.CustomOAuth2UserService;
+import com.nnk.springboot.security.services.OAuth2LoginSuccessHandler;
 import com.nnk.springboot.security.services.UserDetailsServiceImpl;
 import com.nnk.springboot.services.RuleNameService;
 import com.nnk.springboot.services.TradeService;
@@ -53,6 +55,12 @@ public class TradeControllerTest {
 
     @MockBean
     private DataSource dataSource;
+
+    @MockBean
+    private CustomOAuth2UserService customOAuth2UserService;
+
+    @MockBean
+    private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
     @Test
     public void testGetAllTrades() throws Exception {

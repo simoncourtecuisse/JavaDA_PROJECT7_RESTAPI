@@ -24,6 +24,7 @@ public class LoginController {
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
+        LOGGER.info("Get the login page");
         return mav;
     }
 
@@ -33,6 +34,7 @@ public class LoginController {
         ModelAndView mav = new ModelAndView();
         mav.addObject("users", userRepository.findAll());
         mav.setViewName("user/list");
+        LOGGER.info("Get the admin page");
         return mav;
     }
 
@@ -42,6 +44,7 @@ public class LoginController {
         String errorMessage= "You are not authorized for the requested data.";
         mav.addObject("errorMsg", errorMessage);
         mav.setViewName("403");
+        LOGGER.info("Get the error page");
         return mav;
     }
 }

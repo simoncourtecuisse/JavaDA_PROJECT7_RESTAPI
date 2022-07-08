@@ -20,7 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 <span class="fc" id="L21">        User user = userRepository.findByUsername(username)</span>
 <span class="pc" id="L22">                .orElseThrow(() -&gt; new UsernameNotFoundException(&quot;User Not Found with username: &quot; + username));</span>
-<span class="fc" id="L23">        return new UserDetailsImpl(user);</span>
+<span class="fc" id="L23">        System.out.println(new UserDetailsImpl(user));</span>
+<span class="fc" id="L24">        return new UserDetailsImpl(user);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -58,5 +58,12 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isEnabled() {
 <span class="fc" id="L59">        return true;</span>
     }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L64">        return &quot;UserDetailsImpl{&quot; +</span>
+                &quot;user=&quot; + user +
+                '}';
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

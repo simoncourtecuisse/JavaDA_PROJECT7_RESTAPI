@@ -29,41 +29,49 @@ import java.util.List;
 <span class="fc" id="L29">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
     }
 
-//    public User getUserById(Integer id) {
-//        Optional&lt;User&gt; user = userRepository.findById(id);
-//        if (user.isPresent()) {
-//            LOGGER.info(&quot;User's successfully found&quot;);
-//            return user.get();
-//        } else {
-//            LOGGER.error(&quot;Failed to find User&quot;);
-//            return null;
-//        }
-//    }
+    public User getUserByUsername(String username) {
+<span class="nc" id="L33">        LOGGER.info(&quot;User's successfully found&quot;);</span>
+<span class="nc" id="L34">        return userRepository.findByUsername(username).orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Username: &quot; + username));</span>
+    }
 
     public User saveUser(User user) {
-<span class="fc" id="L44">        LOGGER.info(&quot;User's successfully created&quot;);</span>
-<span class="fc" id="L45">        return userRepository.save(user);</span>
+<span class="fc" id="L38">        LOGGER.info(&quot;User's successfully created&quot;);</span>
+<span class="fc" id="L39">        return userRepository.save(user);</span>
     }
 
     public boolean updateUser(Integer id, User updatedUser) {
-<span class="fc" id="L49">        boolean updated = false;</span>
-<span class="fc" id="L50">        User refUser = userRepository.findById(id).orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if (refUser != null) {</span>
-<span class="fc" id="L52">            refUser.setFullName(updatedUser.getFullName());</span>
-<span class="fc" id="L53">            refUser.setUsername(updatedUser.getUsername());</span>
-<span class="fc" id="L54">            refUser.setPassword(updatedUser.getPassword());</span>
-<span class="fc" id="L55">            refUser.setRole(updatedUser.getRole());</span>
-<span class="fc" id="L56">            updated = true;</span>
-<span class="fc" id="L57">            LOGGER.info(&quot;User's successfully updated&quot;);</span>
+<span class="fc" id="L43">        boolean updated = false;</span>
+<span class="fc" id="L44">        User refUser = userRepository.findById(id).orElseThrow(() -&gt; new IllegalArgumentException(&quot;Invalid User Id: &quot; + id));</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (refUser != null) {</span>
+<span class="fc" id="L46">            refUser.setFullName(updatedUser.getFullName());</span>
+<span class="fc" id="L47">            refUser.setUsername(updatedUser.getUsername());</span>
+<span class="fc" id="L48">            refUser.setPassword(updatedUser.getPassword());</span>
+<span class="fc" id="L49">            refUser.setRole(updatedUser.getRole());</span>
+<span class="fc" id="L50">            updated = true;</span>
+<span class="fc" id="L51">            LOGGER.info(&quot;User's successfully updated&quot;);</span>
         } else {
-<span class="nc" id="L59">            LOGGER.error(&quot;Failed to update User&quot;);</span>
+<span class="nc" id="L53">            LOGGER.error(&quot;Failed to update User&quot;);</span>
         }
-<span class="fc" id="L61">        return updated;</span>
+<span class="fc" id="L55">        return updated;</span>
     }
 
     public void deleteUserById(Integer id) {
-<span class="fc" id="L65">        userRepository.deleteById(id);</span>
-<span class="fc" id="L66">    }</span>
+<span class="fc" id="L59">        userRepository.deleteById(id);</span>
+<span class="fc" id="L60">    }</span>
 
+    public void saveUserAfterLoginOAuthLoginSuccess(String loginName, String displayName) {
+<span class="nc" id="L63">        User user = new User();</span>
+<span class="nc" id="L64">        user.setUsername(loginName);</span>
+<span class="nc" id="L65">        user.setFullName(displayName);</span>
+<span class="nc" id="L66">        user.setPassword(&quot;Github123!&quot;);</span>
+<span class="nc" id="L67">        user.setRole(&quot;USER&quot;);</span>
+
+<span class="nc" id="L69">        userRepository.save(user);</span>
+<span class="nc" id="L70">    }</span>
+
+    public void updateUserOAuth(User user, String displayName) {
+<span class="nc" id="L73">        user.setFullName(displayName);</span>
+<span class="nc" id="L74">        userRepository.save(user);</span>
+<span class="nc" id="L75">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
