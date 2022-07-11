@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 2, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! - in com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest
+testOnAuthenticationSuccess  Time elapsed: 0.03 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess(OAuth2LoginSuccessHandlerTest.java:47)
+
+testOnAuthenticationSuccess_UserRepositoryReturnsAbsent  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess_UserRepositoryReturnsAbsent(OAuth2LoginSuccessHandlerTest.java:63)
+
+testOnAuthenticationSuccess_ThrowsIOException  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <java.io.IOException> but was: <java.lang.NullPointerException>
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess_ThrowsIOException(OAuth2LoginSuccessHandlerTest.java:82)
+Caused by: java.lang.NullPointerException
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.lambda$testOnAuthenticationSuccess_ThrowsIOException$0(OAuth2LoginSuccessHandlerTest.java:84)
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess_ThrowsIOException(OAuth2LoginSuccessHandlerTest.java:82)
+
+testOnAuthenticationSuccess_ThrowsServletException  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown ==> expected: <javax.servlet.ServletException> but was: <java.lang.NullPointerException>
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess_ThrowsServletException(OAuth2LoginSuccessHandlerTest.java:101)
+Caused by: java.lang.NullPointerException
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.lambda$testOnAuthenticationSuccess_ThrowsServletException$1(OAuth2LoginSuccessHandlerTest.java:102)
+	at com.nnk.springboot.security.services.OAuth2LoginSuccessHandlerTest.testOnAuthenticationSuccess_ThrowsServletException(OAuth2LoginSuccessHandlerTest.java:101)
+

@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.security.services.CustomOAuth2UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.582 s <<< FAILURE! - in com.nnk.springboot.security.services.CustomOAuth2UserServiceTest
+testLoadUser  Time elapsed: 0.582 s  <<< ERROR!
+org.springframework.security.oauth2.core.OAuth2AuthenticationException: [invalid_user_info_response] An error occurred while attempting to retrieve the UserInfo Resource: 404 Not Found: "<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"><LF><html><head><LF><title>404 Not Found</title><LF></head><body><LF><h1>Not Found</h1><LF><p>The requested URL was not found on this server.</p><LF></body></html><LF>"
+	at com.nnk.springboot.security.services.CustomOAuth2UserServiceTest.testLoadUser(CustomOAuth2UserServiceTest.java:77)
+Caused by: org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found: "<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"><LF><html><head><LF><title>404 Not Found</title><LF></head><body><LF><h1>Not Found</h1><LF><p>The requested URL was not found on this server.</p><LF></body></html><LF>"
+	at com.nnk.springboot.security.services.CustomOAuth2UserServiceTest.testLoadUser(CustomOAuth2UserServiceTest.java:77)
+

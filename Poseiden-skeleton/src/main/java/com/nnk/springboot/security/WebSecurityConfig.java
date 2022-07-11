@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/user/**", "/css/**", "/js/**").permitAll()
 //                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").authenticated()
-                .antMatchers("/app-secure/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/app-secure/**", "/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe().key("uniqueAndSecret")
                 .and().exceptionHandling()
-                .accessDeniedPage("/app/error");
+                .accessDeniedPage("/app-error");
     }
 
     @Bean

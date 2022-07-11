@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.nnk.springboot.services.CurvePointServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.046 s <<< FAILURE! - in com.nnk.springboot.services.CurvePointServiceTest
-testDeleteCurvePointById_CurvePointRepositoryFindByIdReturnsAbsent  Time elapsed: 0.007 s  <<< FAILURE!
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.014 s <<< FAILURE! - in com.nnk.springboot.services.CurvePointServiceTest
+testDeleteCurvePointById_CurvePointRepositoryFindByIdReturnsAbsent  Time elapsed: 0.001 s  <<< FAILURE!
 org.mockito.exceptions.verification.WantedButNotInvoked: 
 
 Wanted but not invoked:
@@ -18,7 +18,7 @@ mockCurvePointRepository.findById(0);
 
 	at com.nnk.springboot.services.CurvePointServiceTest.testDeleteCurvePointById_CurvePointRepositoryFindByIdReturnsAbsent(CurvePointServiceTest.java:139)
 
-testUpdateCurvePoint_CurvePointRepositoryFindByIdReturnsAbsent  Time elapsed: 0.004 s  <<< FAILURE!
+testUpdateCurvePoint_CurvePointRepositoryFindByIdReturnsAbsent  Time elapsed: 0.002 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at com.nnk.springboot.services.CurvePointServiceTest.testUpdateCurvePoint_CurvePointRepositoryFindByIdReturnsAbsent(CurvePointServiceTest.java:114)
 

@@ -5,10 +5,11 @@ spring-boot-skeleton,com.nnk.springboot.controllers,CurveController,0,114,1,5,0,
 spring-boot-skeleton,com.nnk.springboot.controllers,UserController,11,149,1,7,2,38,1,10,0,7
 spring-boot-skeleton,com.nnk.springboot.controllers,BidListController,0,120,1,5,0,31,1,9,0,7
 spring-boot-skeleton,com.nnk.springboot.controllers,RatingController,0,114,1,5,0,29,1,9,0,7
+spring-boot-skeleton,com.nnk.springboot.controllers,CustomErrorController,36,11,13,1,9,4,7,2,0,2
 spring-boot-skeleton,com.nnk.springboot.controllers,TradeController,0,117,1,5,0,30,1,9,0,7
 spring-boot-skeleton,com.nnk.springboot.controllers,RuleNameController,0,118,1,5,0,30,1,9,0,7
 spring-boot-skeleton,com.nnk.springboot.security.services,UserDetailsServiceImpl,6,23,0,0,0,5,1,2,1,2
-spring-boot-skeleton,com.nnk.springboot.security.services,CustomOAuth2User,42,0,0,0,10,0,7,0,7,0
+spring-boot-skeleton,com.nnk.springboot.security.services,CustomOAuth2User,4,38,0,0,1,9,1,6,1,6
 spring-boot-skeleton,com.nnk.springboot.security.services,CustomOAuth2UserService,15,3,0,0,3,1,1,1,1,1
 spring-boot-skeleton,com.nnk.springboot.security.services,UserDetailsImpl,14,48,2,2,2,15,2,9,0,9
 spring-boot-skeleton,com.nnk.springboot.security.services,OAuth2LoginSuccessHandler,51,11,2,0,13,3,1,2,0,2
@@ -19,7 +20,7 @@ spring-boot-skeleton,com.nnk.springboot.services,BidListService,0,119,0,6,0,32,0
 spring-boot-skeleton,com.nnk.springboot.services,TradeService,0,119,0,6,0,32,0,9,0,6
 spring-boot-skeleton,com.nnk.springboot.services,PasswordConstraintValidator,0,78,0,2,0,12,0,4,0,3
 spring-boot-skeleton,com.nnk.springboot.services,RatingService,0,115,0,6,0,31,0,9,0,6
-spring-boot-skeleton,com.nnk.springboot.security,WebSecurityConfig,0,162,0,0,0,44,0,5,0,5
+spring-boot-skeleton,com.nnk.springboot.security,WebSecurityConfig,0,166,0,0,0,44,0,5,0,5
 spring-boot-skeleton,com.nnk.springboot.security,TestsSecurityConfig,0,14,0,0,0,3,0,2,0,2
 spring-boot-skeleton,com.nnk.springboot,PoseidonApp,5,3,0,0,2,1,1,1,1,1
 spring-boot-skeleton,com.nnk.springboot.domain,Rating,5,124,7,7,0,27,7,14,0,14

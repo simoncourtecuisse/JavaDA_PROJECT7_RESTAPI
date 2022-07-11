@@ -27,6 +27,7 @@ C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Posei
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Rating.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\services\RuleNameService.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\services\OAuth2LoginSuccessHandler.java
+C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\controllers\CustomErrorController.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\TestsSecurityConfig.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\security\WebSecurityConfig.java
 C:\Users\Simon\Desktop\FORMATION DEV JAVA\Projet_7\JavaDA_PROJECT7_RESTAPI\Poseiden-skeleton\src\main\java\com\nnk\springboot\domain\Trade.java

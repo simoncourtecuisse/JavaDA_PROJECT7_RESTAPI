@@ -24,6 +24,7 @@ com\nnk\springboot\security\services\OAuth2LoginSuccessHandler.class
 com\nnk\springboot\repositories\TradeRepository.class
 com\nnk\springboot\repositories\BidListRepository.class
 com\nnk\springboot\services\UserService.class
+com\nnk\springboot\controllers\CustomErrorController.class
 com\nnk\springboot\services\BidListService.class
 com\nnk\springboot\controllers\CurveController.class
 com\nnk\springboot\security\services\UserDetailsServiceImpl.class

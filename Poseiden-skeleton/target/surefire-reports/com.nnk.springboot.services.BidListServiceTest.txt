@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.nnk.springboot.services.BidListServiceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.026 s <<< FAILURE! - in com.nnk.springboot.services.BidListServiceTest
-testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0 s  <<< FAILURE!
+Tests run: 9, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.005 s <<< FAILURE! - in com.nnk.springboot.services.BidListServiceTest
+testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0.001 s  <<< FAILURE!
 org.mockito.exceptions.verification.WantedButNotInvoked: 
 
 Wanted but not invoked:
@@ -18,7 +18,7 @@ mockBidListRepository.findById(0);
 
 	at com.nnk.springboot.services.BidListServiceTest.testDeleteBidListById_BidListRepositoryFindByIdReturnsAbsent(BidListServiceTest.java:149)
 
-testUpdateBidList_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0.003 s  <<< FAILURE!
+testUpdateBidList_BidListRepositoryFindByIdReturnsAbsent  Time elapsed: 0.001 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at com.nnk.springboot.services.BidListServiceTest.testUpdateBidList_BidListRepositoryFindByIdReturnsAbsent(BidListServiceTest.java:122)
 

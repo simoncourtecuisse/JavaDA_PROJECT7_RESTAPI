@@ -55,7 +55,7 @@ import javax.sql.DataSource;
 <span class="fc" id="L55">                .antMatchers(&quot;/&quot;, &quot;/user/**&quot;, &quot;/css/**&quot;, &quot;/js/**&quot;).permitAll()</span>
 //                .antMatchers(&quot;/bidList/**&quot;, &quot;/curvePoint/**&quot;, &quot;/rating/**&quot;, &quot;/ruleName/**&quot;, &quot;/trade/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;, &quot;USER&quot;)
 <span class="fc" id="L57">                .antMatchers(&quot;/bidList/**&quot;, &quot;/curvePoint/**&quot;, &quot;/rating/**&quot;, &quot;/ruleName/**&quot;, &quot;/trade/**&quot;).authenticated()</span>
-<span class="fc" id="L58">                .antMatchers(&quot;/app-secure/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;)</span>
+<span class="fc" id="L58">                .antMatchers(&quot;/app-secure/**&quot;, &quot;/admin/**&quot;).hasAnyAuthority(&quot;ADMIN&quot;)</span>
 <span class="fc" id="L59">                .anyRequest()</span>
 <span class="fc" id="L60">                .authenticated()</span>
 <span class="fc" id="L61">                .and()</span>
@@ -75,7 +75,7 @@ import javax.sql.DataSource;
 <span class="fc" id="L75">                .and()</span>
 <span class="fc" id="L76">                .rememberMe().key(&quot;uniqueAndSecret&quot;)</span>
 <span class="fc" id="L77">                .and().exceptionHandling()</span>
-<span class="fc" id="L78">                .accessDeniedPage(&quot;/app/error&quot;);</span>
+<span class="fc" id="L78">                .accessDeniedPage(&quot;/app-error&quot;);</span>
 <span class="fc" id="L79">    }</span>
 
     @Bean

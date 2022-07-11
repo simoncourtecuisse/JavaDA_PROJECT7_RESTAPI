@@ -29,7 +29,6 @@ public class LoginController {
     }
 
     @GetMapping("/app-secure/article-details")
-    @RolesAllowed("ADMIN")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("users", userRepository.findAll());

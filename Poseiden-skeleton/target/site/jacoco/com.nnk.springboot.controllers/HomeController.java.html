@@ -7,21 +7,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-<span class="fc" id="L11">public class HomeController {</span>
+import javax.annotation.security.RolesAllowed;
 
-<span class="fc" id="L13">	Logger LOGGER = LogManager.getLogger(HomeController.class);</span>
+@Controller
+<span class="fc" id="L13">public class HomeController {</span>
+
+<span class="fc" id="L15">	Logger LOGGER = LogManager.getLogger(HomeController.class);</span>
 
 	@RequestMapping(&quot;/&quot;)
 	public String home(Model model)	{
-<span class="fc" id="L17">		LOGGER.info(&quot;Get the homepage&quot;);</span>
-<span class="fc" id="L18">		return &quot;home&quot;;</span>
+<span class="fc" id="L19">		LOGGER.info(&quot;Get the homepage&quot;);</span>
+<span class="fc" id="L20">		return &quot;home&quot;;</span>
 	}
 
 	@RequestMapping(&quot;/admin/home&quot;)
 	public String adminHome(Model model) {
-<span class="fc" id="L23">		LOGGER.info(&quot;Get the admin homepage&quot;);</span>
-<span class="fc" id="L24">		return &quot;redirect:/bidList/list&quot;;</span>
+<span class="fc" id="L25">		LOGGER.info(&quot;Get the admin homepage&quot;);</span>
+<span class="fc" id="L26">		return &quot;redirect:/bidList/list&quot;;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
