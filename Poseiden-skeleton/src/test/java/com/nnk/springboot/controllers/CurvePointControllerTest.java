@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(CurveController.class)
+@WebMvcTest(CurvePointController.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 public class CurvePointControllerTest {

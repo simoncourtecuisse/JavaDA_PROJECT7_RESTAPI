@@ -1,20 +1,24 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Range;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.sql.Date;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * JPA entity: BidList - MySQL table: bid_list.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "bidList")
 @Table(name = "bid_list")
 public class BidList {
-    // TODO: Map columns in data table BIDLIST with corresponding java fields
-    // DONE
+    // DONE: Map columns in data table BIDLIST with corresponding java fields
 
     @Id
     @SequenceGenerator(

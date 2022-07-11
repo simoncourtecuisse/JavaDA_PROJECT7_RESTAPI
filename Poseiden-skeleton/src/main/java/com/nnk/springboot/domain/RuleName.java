@@ -2,14 +2,18 @@ package com.nnk.springboot.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * JPA entity: RuleName - MySQL table: rule_name.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "ruleName")
 @Table(name = "rule_name")
 public class RuleName {
-    // TODO: Map columns in data table RULENAME with corresponding java fields
-    // DONE
+    // DONE: Map columns in data table RULENAME with corresponding java fields
 
     @Id
     @SequenceGenerator(
@@ -48,7 +52,8 @@ public class RuleName {
     @Column(name = "sql_part")
     private String sqlPart;
 
-    public RuleName() {}
+    public RuleName() {
+    }
 
     public RuleName(String name, String description, String json, String template, String sqlStr, String sqlPart) {
         this.name = name;

@@ -1,6 +1,7 @@
 package com.nnk.springboot.services;
 
 
+import com.nnk.springboot.controllers.RatingController;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The service provides methods that get called by the RatingController for CRUD operations.
+ *
+ * @author SimonC.
+ * @version 1.0
+ * @see RatingController
+ * @see RatingRepository
+ */
 @Service
 @Transactional
 public class RatingService {
@@ -21,10 +30,21 @@ public class RatingService {
     @Autowired
     private RatingRepository ratingRepository;
 
+    /**
+     * Get all the Ratings contained in the database.
+     *
+     * @return A list of all the ratings.
+     */
     public List<Rating> getAllRatings() {
         return ratingRepository.findAll();
     }
 
+    /**
+     * Get a rating from its id.
+     *
+     * @param id The rating id to get.
+     * @return An optional which may or may not contain the rating. If a rating is present, isPresent() returns true. If no rating is present, the object is considered empty and isPresent() returns false.
+     */
     public Rating getRatingById(Integer id) {
         Optional<Rating> rating = ratingRepository.findById(id);
         if (rating.isPresent()) {
@@ -36,11 +56,24 @@ public class RatingService {
         }
     }
 
+    /**
+     * Save a rating.
+     *
+     * @param rating The rating to save.
+     * @return The rating saved.
+     */
     public Rating saveRating(Rating rating) {
         LOGGER.info("Rating successfully created");
         return ratingRepository.save(rating);
     }
 
+    /**
+     * Update a rating.
+     *
+     * @param id     The rating id to update.
+     * @param rating The rating to update.
+     * @return The updated rating saved.
+     */
     public boolean updateRating(Integer id, Rating rating) {
         boolean updated = false;
         Optional<Rating> refRating = ratingRepository.findById(id);
@@ -59,6 +92,11 @@ public class RatingService {
         return updated;
     }
 
+    /**
+     * Delete a rating.
+     *
+     * @param id The rating id to delete.
+     */
     public void deleteRatingById(Integer id) {
         Optional<Rating> removeRating = ratingRepository.findById(id);
         if (removeRating.isPresent()) {

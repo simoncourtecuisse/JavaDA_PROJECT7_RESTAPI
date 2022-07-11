@@ -9,12 +9,16 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
+/**
+ * JPA entity: Trade - MySQL table: trade.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "Trade")
 @Table(name = "trade")
 public class Trade {
-    // TODO: Map columns in data table TRADE with corresponding java fields
-    // DONE
+    // DONE: Map columns in data table TRADE with corresponding java fields
 
     @Id
     @SequenceGenerator(
@@ -96,7 +100,8 @@ public class Trade {
     @Column(name = "side")
     private String side;
 
-    public Trade() {}
+    public Trade() {
+    }
 
     public Trade(String account, String type) {
         this.account = account;

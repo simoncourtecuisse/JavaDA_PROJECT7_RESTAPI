@@ -9,11 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The controller manages the error pages.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Controller
 @RequestMapping("/error")
 public class CustomErrorController implements ErrorController {
 
 
+    /**
+     * Handling the errors.
+     *
+     * @param request Get the HttpStatus code.
+     * @return The error views depending on the HttpStatus' code.
+     */
     @GetMapping
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

@@ -5,23 +5,25 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-
+/**
+ * JPA entity: CurvePoint - MySQL table: curve_point.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "curvePoint")
 @Table(name = "curve_point")
 public class CurvePoint {
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
-    // DONE
+    // DONE: Map columns in data table CURVEPOINT with corresponding java fields
 
     @Id
     @SequenceGenerator(
@@ -61,7 +63,8 @@ public class CurvePoint {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Timestamp creationDate;
 
-    public CurvePoint() {}
+    public CurvePoint() {
+    }
 
     public CurvePoint(Integer curveId, double term, double value) {
         this.curveId = curveId;

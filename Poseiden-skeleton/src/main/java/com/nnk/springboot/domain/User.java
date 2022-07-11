@@ -10,6 +10,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * JPA entity: User - MySQL table: users.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "User")
 @DynamicUpdate
 @Table(name = "users")

@@ -6,11 +6,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.security.RolesAllowed;
-
+/**
+ * The controller manages the login.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Controller
 //@RequestMapping("/app")
 public class LoginController {
@@ -20,6 +23,9 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * @return Model data and view in a single return value
+     */
     @GetMapping("login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
@@ -28,6 +34,9 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * @return Model data and view for the app secure in a single return value
+     */
     @GetMapping("/app-secure/article-details")
     public ModelAndView getAllUserArticles() {
         ModelAndView mav = new ModelAndView();
@@ -37,10 +46,13 @@ public class LoginController {
         return mav;
     }
 
+    /**
+     * @return Model data and view for errors in a single return value
+     */
     @GetMapping("/app-error")
     public ModelAndView error() {
         ModelAndView mav = new ModelAndView();
-        String errorMessage= "You are not authorized for the requested data.";
+        String errorMessage = "You are not authorized for the requested data.";
         mav.addObject("errorMsg", errorMessage);
         mav.setViewName("403");
         LOGGER.info("Get the error page");

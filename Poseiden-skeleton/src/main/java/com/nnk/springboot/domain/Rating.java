@@ -1,17 +1,20 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * JPA entity: Rating - MySQL table: rating.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 @Entity(name = "Rating")
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
-    // DONE
+    // DONE: Map columns in data table RATING with corresponding java fields
 
     @Id
     @SequenceGenerator(
@@ -42,7 +45,8 @@ public class Rating {
     @Column(name = "order_Number")
     private Integer orderNumber;
 
-    public Rating() {}
+    public Rating() {
+    }
 
     public Rating(String moodyRating, String sandPRating, String fitchRating, Integer orderNumber) {
         this.moodyRating = moodyRating;
