@@ -6,6 +6,12 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * The class implements OAuth2User and contains the details of the authenticated user.
+ *
+ * @author SimonC.
+ * @version 1.0
+ */
 public class CustomOAuth2User implements OAuth2User {
 
     private OAuth2User oAuth2User;
@@ -26,7 +32,6 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
-        System.out.println("test" + oAuth2User.getAttributes());
         return oAuth2User.getAttribute("login");
     }
 
