@@ -24,16 +24,6 @@ ____________________
 4. Create database with name "demo" as configuration in application.properties
 5. Run sql script to create table doc/data.sql
 
-## Credentials
-
-User already in database
-
-```bash
-login: admin - password: Admin123!
-login: user  - password: User123!
-login: user2 - password: User123! 
-```
-
 ## Build
 Build application with the command `mvn clean install`.
 
@@ -59,43 +49,35 @@ poseidon.app.jwtExpirationMs=86400000
 ```
 Change the `spring.datasource.username=your_username` and the `spring.datasource.password=your_password`.
 
-For the back-end side run the command `mvn spring-boot:run` then navigate to the Angular folder and run the command `npm run start` this will compile the Angular app and automatically launch it in the browser on the URL http://localhost:4200.
-
+For the back-end side run the command `mvn spring-boot:run` then navigate to your browser on the URL http://localhost:8080.
 
 ## Try the application
 
-You can run the [Data Script](src/main/resources/MySQL/DataTest.sql) to have some fake users so you can test all the features.
+You can run the [Data Script](Poseiden-skeleton/doc/dataTest.sql) to have some fake data so you can test all the features.
 
 ### Super user
-You can use user with email '_admin@paymybuddy.com_' and password
-'_admin123_' to connect as a super user with 'ADMIN' authorizations.
+You can use user with username '_admin_' and password
+'_Admin123!_' to connect as a super user with 'ADMIN' authorizations.
 
-Otherwise you just have to register as a new user.
+Otherwise you just have to create a new user by going to the '_User Management_' link and click on the '_Add New_' button.
 
 ## Technology Stack
 Component         | Technology
 ---               | ---
-Frontend          | [Angular 9](https://github.com/angular/angular)
-Backend (REST)    | [SpringBoot 2.5.6](https://projects.spring.io/spring-boot) (Java)
+Backend           | [SpringBoot 2.5.6](https://projects.spring.io/spring-boot) (Java)
 Database          | [MySQL](https://www.mysql.com/)
-Security          | Spring Security & [JSON Web Token](https://jwt.io/)
+Security          | Spring Security & [JSON Web Token](https://jwt.io/) & [Oauth2.0](https://oauth.net/2/)
 Persistence       | JPA (Using Spring Data)
-Client Build Tools| [angular-cli](https://github.com/angular/angular-cli) npm
 Server Build Tools| Maven(Java)
 
 ## Documentation
 
 ### SQL Scripts
 Contains the principal database and the database for the tests.
-https://github.com/simoncourtecuisse/PayMyBuddy/tree/master/src/main/resources/MySQL
+(https://github.com/simoncourtecuisse/JavaDA_PROJECT7_RESTAPI/tree/master/Poseiden-skeleton/doc)
 
-### Model Database (SQL)
-
-![DatabaseModel_PMB](src/main/resources/Docs/DatabaseModel_PMB.png)
-
-### UML Diagram
-
-![UML_PMB](src/main/resources/Docs/UML_PMB.png)
+### Javadoc
+The Poseidon Application Javadoc [JAVADOC](Poseiden-skeleton/doc/Javadoc/index.html)
 
 ### Other Resources
 See [HELP.md](https://github.com/simoncourtecuisse/PayMyBuddy/blob/main/PayMyBuddy/HELP.md) for helpful documentation regarding Spring Boot and [README.md](/README.md) for important commands and documentation relating to Angular and its embedded server.
