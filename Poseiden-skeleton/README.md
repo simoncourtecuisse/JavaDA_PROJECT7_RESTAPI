@@ -29,16 +29,13 @@ ____________________
 User already in database
 
 ```bash
-login: admin  password: Admin123!
-login: user   password: User123!
-login: user2  password: User123!
+login: admin - password: Admin123!
+login: user  - password: User123!
+login: user2 - password: User123! 
 ```
 
 ## Build
-Build application with the command `mvn clean install` for the back-end side.
-
-For the front-side, install NodeJS and NPM from https://nodejs.org.
-Run the command `npm install`.
+Build application with the command `mvn clean install`.
 
 ## Run
 To run the application you have to update the `application.properties` in the `resources` folder:
@@ -54,7 +51,6 @@ spring.datasource.password=sqlpassword!
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.hibernate.ddl-auto=create-drop
-#spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
 ################### App Properties ##########################
