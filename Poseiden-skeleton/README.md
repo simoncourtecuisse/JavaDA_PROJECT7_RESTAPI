@@ -7,14 +7,12 @@ ____________________
 # Poseidon Application
 > -- _Poseidon Inc._ --
 
-# spring-boot
 ## Technical:
 
-1. Framework: Spring Boot v2.0.4
-2. Java 8
-3. Thymeleaf
-4. Bootstrap v.4.3.1
-
+- Java 14.0.1
+- Maven 3.8.4
+- Thymeleaf
+- MySQL
 
 ## Setup with Intellij IDE
 1. Create project from Initializr: File > New > project > Spring Initializr
@@ -25,6 +23,16 @@ ____________________
     - Static: src/main/resource/static
 4. Create database with name "demo" as configuration in application.properties
 5. Run sql script to create table doc/data.sql
+
+## Credentials
+
+User already in database
+
+```bash
+login: admin  password: Admin123!
+login: user  password: User123!
+login: user2  password: User123!
+```
 
 ## Implement a Feature
 1. Create mapping domain class and place in package com.nnk.springboot.domain
