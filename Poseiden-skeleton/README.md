@@ -1,3 +1,10 @@
+[Java](https://img.shields.io/badge/java-%23404d59.svg?style=for-the-badge&logo=java&logoColor=%2361DAFB) !
+(https://img.shields.io/badge/icons8-java-14.svg?style=for-the-badge&logo=java&logoColor=%2361DAFB) !
+____________________
+
+# Poseidon Application
+> -- _We make moving your money easy !_ --
+
 # spring-boot
 ## Technical:
 
