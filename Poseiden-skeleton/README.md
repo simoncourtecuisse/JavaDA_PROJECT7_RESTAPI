@@ -1,5 +1,4 @@
-[Java](https://img.shields.io/badge/java-%23404d59.svg?style=for-the-badge&logo=java&logoColor=%2361DAFB) !
-(https://img.shields.io/badge/icons8-java-14.svg?style=for-the-badge&logo=java&logoColor=%2361DAFB) !
+![Java](https://img.shields.io/badge/icons8-java-14.svg?style=for-the-badge&logo=java&logoColor=#EC1C24)
 ____________________
 
 # Poseidon Application
