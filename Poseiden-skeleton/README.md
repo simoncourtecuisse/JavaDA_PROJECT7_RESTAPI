@@ -5,7 +5,7 @@
 ____________________
 
 # Poseidon Application
-> -- _We make moving your money easy !_ --
+> -- _Poseidon Inc._ --
 
 # spring-boot
 ## Technical:
