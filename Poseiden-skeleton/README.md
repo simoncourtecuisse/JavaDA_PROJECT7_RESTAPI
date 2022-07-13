@@ -11,7 +11,7 @@ ____________________
 
 - Java 14.0.1
 - Maven 3.8.4
-- Thymeleaf
+- Thymeleaf 3.0.15
 - MySQL
 
 ## Setup with Intellij IDE
@@ -64,6 +64,7 @@ Otherwise you just have to create a new user by going to the '_User Management_'
 ## Technology Stack
 Component         | Technology
 ---               | ---
+Frontend          | [Thymeleaf 3.0.15](https://www.thymeleaf.org/)
 Backend           | [SpringBoot 2.5.6](https://projects.spring.io/spring-boot) (Java)
 Database          | [MySQL](https://www.mysql.com/)
 Security          | Spring Security & [JSON Web Token](https://jwt.io/) & [Oauth2.0](https://oauth.net/2/)
@@ -77,7 +78,7 @@ Contains the principal database and the database for the tests.
 (https://github.com/simoncourtecuisse/JavaDA_PROJECT7_RESTAPI/tree/master/Poseiden-skeleton/doc)
 
 ### Javadoc
-The Poseidon Application Javadoc [JAVADOC](Poseiden-skeleton/doc/Javadoc/index.html)
+The Poseidon Application [Javadoc](Poseiden-skeleton/doc/Javadoc/index.html)
 
 ### Other Resources
 See [HELP.md](https://github.com/simoncourtecuisse/PayMyBuddy/blob/main/PayMyBuddy/HELP.md) for helpful documentation regarding Spring Boot and [README.md](/README.md) for important commands and documentation relating to Angular and its embedded server.
